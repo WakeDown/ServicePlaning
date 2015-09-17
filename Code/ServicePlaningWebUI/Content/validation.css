@@ -1,0 +1,26 @@
+﻿/*контейнер*/
+.val-form .help-block {
+    margin-bottom: 0;
+    font-size: 0.9em;
+}
+
+/*название поля*/
+.val-form .required-mark:before {
+    content: '* ';
+    color:  red;
+    font-size: 1.2em;
+}
+
+/*проверочный контрол*/
+.val-form .form-control:before {
+    
+}
+
+/*контейнер сообщений*/
+.val-form .help-block {
+    
+}
+
+.val-form .val-control-container:after {
+    
+}

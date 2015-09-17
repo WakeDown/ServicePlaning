@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/WebForms/Masters/Site.Master" AutoEventWireup="true" CodeBehind="List.master.cs" Inherits="ServicePlaningWebUI.WebForms.Masters.List" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMainContent" runat="server">
+    <%-- Основные кнопки управления --%>
+    <div class="btn-toolbar " role="toolbar">
+        <asp:ContentPlaceHolder ID="cphControlButtons" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <hr class="smallmargin teeny" />
+    <%-- Фильтр таблицы --%>
+    <div class="panel-group" id="accordion" runat="server">
+        <div class="panel panel-default" id="filter">
+            
+            <div id="filterPanel" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <asp:ContentPlaceHolder ID="cphFilterBody" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div id="filterHead" class="panel-heading">
+                <div class="panel-title collapsed" data-toggle="collapse" data-target="#filterPanel">
+                    <a class="title"><i class="glyphicon glyphicon-filter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%-- Таблица со списком --%>
+    <asp:ContentPlaceHolder ID="cphList" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>

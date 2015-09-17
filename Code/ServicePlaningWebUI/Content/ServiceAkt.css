@@ -1,0 +1,194 @@
+﻿body {
+    font-size: 12pt;
+    font-family: Segoe UI, Verdana, Helvetica, Sans-Serif
+}
+
+.print {
+    page-break-after:always;
+}
+
+.sheet {
+    width: 1020px !important;
+}
+
+.sheet tr, .sheet tr td {
+}
+
+.sheet-line {
+    width: 100%;
+}
+
+.pad-3 tr td {
+    padding: 3px;
+}
+
+.sheet .title-line td {
+    font-style: italic;
+    font-size: 0.8em;
+    text-align: center;
+    height: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.title {
+    font-size: 1.3em;
+    font-weight: 700;
+    text-align: center;
+}
+
+.title-img {
+    height: 100px;
+}
+
+.title-info {
+    font-size: 1.2em;
+    color: #546165;
+    text-align: center;
+}
+
+.pad-mid-l {
+    padding-left: 10px;
+}
+
+.pad-mid-r {
+    padding-right: 10px;
+}
+
+.pad-mid-t {
+    padding-top: 10px;
+}
+
+.marg-mid-l {
+    margin-left: 10px;
+}
+
+.marg-mid-t {
+    margin-top: 25px;
+}
+
+.marg-mid-b {
+    margin-bottom: 25px;
+}
+
+.dev-title {
+    width: 150px;
+    text-align: right;
+}
+
+.dev-val {
+    padding-left: 20px;
+    text-align: left;
+    font-size: 1.3em;
+    color: black;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.f-small {
+    font-size: 0.8em; 
+}
+
+div.check-box {
+
+    height: 15px !important;
+    width: 15px !important;
+    border: 1px solid black;
+}
+
+.check-box {
+    height: 15px;
+    width: 15px;
+    border: 1px solid black;
+}
+
+
+.text-box {
+    width: 150px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+.text-box-sm {
+    width: 150px;
+    height: 15px;
+    border: 1px solid black;
+}
+
+.tb-info {
+    text-align: center;
+    font-size: 0.8em;
+    vertical-align: top;
+}
+
+tr.text-line td, td.text-line {
+    border-bottom: 1px solid black;
+}
+
+.text-num {
+    width: 10px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.w-25 {
+    width: 25%;
+}
+
+.min-width {
+    width: 1px;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.f-bg {
+    font-size: 1.2em;
+}
+
+.f-smaller {
+    font-size: 0.7em;
+}
+
+.brd-spc {
+    border-spacing: 7px;
+}
+
+.width-40 {
+    width: 40px;
+}
+
+.align-center {
+    text-align: center !important;
+}
+
+.nowrap {
+    white-space: nowrap;
+}

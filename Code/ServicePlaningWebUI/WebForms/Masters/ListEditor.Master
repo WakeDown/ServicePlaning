@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/WebForms/Masters/Site.Master" AutoEventWireup="true" CodeBehind="ListEditor.master.cs" Inherits="ServicePlaningWebUI.WebForms.Masters.ListEditor" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMainContent" runat="server">
+    <%-- Форма ввода нового контракта --%>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+                <asp:ContentPlaceHolder ID="cphFormTitle" runat="server">
+                </asp:ContentPlaceHolder>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <asp:ContentPlaceHolder ID="cphFormBody" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+<%--    <hr class="smallmargin teeny" />--%>
+    <%-- Фильтр таблицы --%>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default" id="filter">
+            <div id="filterPanel" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <asp:ContentPlaceHolder ID="cphFilterBody" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div id="filterHead" class="panel-heading">
+                <div class="panel-title collapsed" data-toggle="collapse" data-target="#filterPanel">
+                    <a class="title"><i class="glyphicon glyphicon-filter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%-- Таблица со списком --%>
+    <asp:ContentPlaceHolder ID="cphList" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
