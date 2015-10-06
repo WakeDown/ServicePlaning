@@ -528,8 +528,26 @@ namespace ServicePlaningWebUI.Helpers
             chkl.Enabled = enable;
         }
 
+        public static void RblSetValue(ref RadioButtonList rbl, bool? value, bool enable = true)
+        {
+            if (value.HasValue)
+            {
+                RblSetValue(ref rbl, value.Value.ToString(), enable);
+            }
+            else
+            {
+                rbl.SelectedIndex = -1;
+                rbl.Enabled = enable;
+            }
+        }
+
         public static void RblSetValue(ref RadioButtonList rbl, string value, bool enable = true)
         {
+            if (!String.IsNullOrEmpty(value))
+            {
+                if (value.Equals("True")) value = "1";
+                if (value.Equals("False")) value = "0";
+            }
             rbl.SelectedValue = value;
             rbl.Enabled = enable;
         }

@@ -27,6 +27,7 @@ namespace ServicePlaningWebUI.Models
         public int? IdPriceDiscount;
         public bool PeriodReduction;
         public int? HandlingDevices;
+        public bool? ClientSdNumRequired;
 
         public Contract()
         {
@@ -68,6 +69,7 @@ namespace ServicePlaningWebUI.Models
                 IdPriceDiscount = GetValueIntOrNull(dr["id_price_discount"].ToString());
                 PeriodReduction = GetValueBool(dr["period_reduction"].ToString());
                 HandlingDevices = GetValueIntOrNull(dr["handling_devices"].ToString());
+                ClientSdNumRequired = GetValueBoolOrNull(dr["client_sd_num_required"].ToString());
             }
         }
 
@@ -89,8 +91,9 @@ namespace ServicePlaningWebUI.Models
             SqlParameter pIdContractProlong = new SqlParameter() { ParameterName = "id_contract_prolong", Value = IdContractProlong, DbType = DbType.Int32 };
             SqlParameter pIdPriceDiscount = new SqlParameter() { ParameterName = "id_price_discount", Value = IdPriceDiscount, DbType = DbType.Int32 };
             SqlParameter pHandlingDevices = new SqlParameter() { ParameterName = "handling_devices", Value = HandlingDevices, DbType = DbType.Int32 };
+            SqlParameter pClientSdNumRequired = new SqlParameter() { ParameterName = "client_sd_num_required", Value = ClientSdNumRequired, SqlDbType = SqlDbType.Bit };
 
-            DataTable dt = ExecuteQueryStoredProcedure(Srvpl.sp, "saveContract", pId, pNumber, pPrice, pIdServiceType, pIdContractType, pIdContractor, pIdContractStatus, pIdManager, pDateBegin, pDateEnd, pIdCreator, pIdZipState, pNote, pIdContractProlong, pIdPriceDiscount, pHandlingDevices);
+            DataTable dt = ExecuteQueryStoredProcedure(Srvpl.sp, "saveContract", pId, pNumber, pPrice, pIdServiceType, pIdContractType, pIdContractor, pIdContractStatus, pIdManager, pDateBegin, pDateEnd, pIdCreator, pIdZipState, pNote, pIdContractProlong, pIdPriceDiscount, pHandlingDevices, pClientSdNumRequired);
 
 
             //TODO: Перенести исключения на уровень БД!!!

@@ -266,6 +266,7 @@ namespace ServicePlaningWebUI.WebForms.Contracts
             contract.IdZipState = MainHelper.DdlGetSelectedValueInt(ref ddlContractZipState);
             contract.Note = MainHelper.TxtGetText(ref txtNote);
             contract.HandlingDevices = MainHelper.TxtGetTextInt32(ref txtHandlingDevices, true);
+            contract.ClientSdNumRequired = MainHelper.RblGetValueBool(ref rblClientSdNumRequired, true);
 
             return contract;
         }
@@ -291,6 +292,7 @@ namespace ServicePlaningWebUI.WebForms.Contracts
             MainHelper.DdlSetSelectedValue(ref ddlContractZipState, contract.IdZipState);
             MainHelper.TxtSetText(ref txtNote, contract.Note);
             MainHelper.TxtSetText(ref txtHandlingDevices, contract.HandlingDevices);
+            MainHelper.RblSetValue(ref rblClientSdNumRequired, contract.ClientSdNumRequired);
 
             btnProlong.Visible = IsProlong;
             btnCopy.Visible = !IsProlong;

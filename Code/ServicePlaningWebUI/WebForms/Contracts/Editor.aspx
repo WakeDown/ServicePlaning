@@ -169,6 +169,18 @@
                 </span>
             </div>
         </div>
+        <div class="form-group">
+            <label for='<%=rblClientSdNumRequired.ClientID %>' class="col-sm-2 control-label required-mark">№SD клиента обязателен</label>
+            <div class="col-sm-10">
+                <asp:RadioButtonList ID="rblClientSdNumRequired" runat="server" RepeatDirection="Horizontal" CssClass="form-control chk-lst">
+                            <asp:ListItem Text="да" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="нет" Value="0"></asp:ListItem>
+                        </asp:RadioButtonList>
+                <span class="help-block">
+<%--                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Заполните поле &laquo;№ договора&raquo;" ControlToValidate="txtNumber" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>--%>
+                </span>
+            </div>
+        </div>
         <div class="col-sm-offset-2 col-sm-10">
             <asp:PlaceHolder ID="phServerMessage" runat="server"></asp:PlaceHolder>
         </div>

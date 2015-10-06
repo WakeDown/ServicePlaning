@@ -204,6 +204,12 @@ namespace ServicePlaningWebUI.WebForms.Service
             MainHelper.TxtSetText(ref txtCounterColour, serviceCame.CounterColour);
             MainHelper.TxtSetDate(ref txtDateCame, serviceCame.DateCame);
             MainHelper.TxtSetText(ref txtDescr, serviceClaim.Descr);
+            MainHelper.RblSetValue(ref rblProcessEnabled, serviceCame.ProcessEnabled);
+            MainHelper.RblSetValue(ref rblDeviceEnabled, serviceCame.DeviceEnabled);
+            MainHelper.RblSetValue(ref rblNeedZip, serviceCame.NeedZip);
+            MainHelper.RblSetValue(ref rblNoCounter, serviceCame.NoCounter);
+            MainHelper.RblSetValue(ref rblCounterUnavailable, serviceCame.CounterUnavailable);
+            MainHelper.RblSetValue(ref rblNoPay, serviceCame.NoPay);
         }
 
         private void RegisterStartupScripts()
