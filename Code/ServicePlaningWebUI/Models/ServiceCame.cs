@@ -100,9 +100,9 @@ namespace ServicePlaningWebUI.Models
                 Uri uri = new Uri(String.Format("{0}/Claim/RemoteCreate4ZipClaim?idServiceCame={1}", DbModel.OdataServiceUri, id));
                 DbModel.GetApiClient().DownloadString(uri);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Инцидент для заявки на ЗИП НЕ создан. Акт СОХРАНЕН!");
+                throw new Exception($"Инцидент для заявки на ЗИП НЕ создан. Акт СОХРАНЕН! {ex.Message}");
             }
         }
         

@@ -426,8 +426,8 @@ namespace ServicePlaningWebUI.WebForms.Service
                 cvTxtCounter.Enabled = false;
             }
                 pnlCounters.Visible = rblCounterUnavailableContainer.Visible && rblCounterUnavailable.SelectedIndex >= 0 && rblCounterUnavailable.SelectedValue.Equals("0");
-            
-            
+
+            rfvTxtCounter.Enabled = cvTxtCounter .Enabled= pnlCounters.Visible;
         }
 
         protected void rblNoCounter_OnSelectedIndexChanged(object sender, EventArgs e)
