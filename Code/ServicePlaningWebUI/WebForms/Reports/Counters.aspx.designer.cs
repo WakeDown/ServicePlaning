@@ -13,6 +13,15 @@ namespace ServicePlaningWebUI.WebForms.Reports {
     public partial class Counters {
         
         /// <summary>
+        /// btnInExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnInExcel;
+        
+        /// <summary>
         /// ddlServiceManager control.
         /// </summary>
         /// <remarks>

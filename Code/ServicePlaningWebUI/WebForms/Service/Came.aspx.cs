@@ -79,6 +79,7 @@ namespace ServicePlaningWebUI.WebForms.Service
                         lbClaim.Items[0].Selected = true;
                     }
                 }
+                
             }
 
             RegisterStartupScripts();
@@ -89,6 +90,7 @@ namespace ServicePlaningWebUI.WebForms.Service
             if (!IsPostBack)
             {
                 SetDefaultValues();
+                FormDisplay();
             }
 
             txtClaimSelection.Focus();
@@ -168,7 +170,13 @@ namespace ServicePlaningWebUI.WebForms.Service
                 Counter = MainHelper.TxtGetTextInt32(ref txtCounter),
                 Descr = MainHelper.TxtGetText(ref txtDescr),
                 IdCreator = User.Id,
-                CounterColour = MainHelper.TxtGetTextInt32(ref txtCounterColour, true)
+                CounterColour = MainHelper.TxtGetTextInt32(ref txtCounterColour, true),
+                NoPay = MainHelper.RblGetValueBool(ref rblNoPay),
+                ProcessEnabled = MainHelper.RblGetValueBool(ref rblProcessEnabled),
+                DeviceEnabled = MainHelper.RblGetValueBool(ref rblDeviceEnabled),
+                NeedZip = MainHelper.RblGetValueBool(ref rblNeedZip),
+                NoCounter = MainHelper.RblGetValueBool(ref rblNoCounter),
+                CounterUnavailable = MainHelper.RblGetValueBool(ref rblCounterUnavailable)
             };
 
             return serviceCame;
@@ -301,6 +309,7 @@ namespace ServicePlaningWebUI.WebForms.Service
             bool flag = CheckCounter(out counterMustBe);
 
             DisplayCounterNote(flag, counterMustBe);
+            txtCounterColour.Focus();
         }
 
         protected void txtCounter_OnTextChanged(object sender, EventArgs e)
@@ -384,6 +393,51 @@ namespace ServicePlaningWebUI.WebForms.Service
             string serial = lbSerialNums.SelectedItem.Text;
             txtClaimSelection.Text = serial;
             FillClaimList(serial);
+        }
+
+        protected void rblCounterUnavailable_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            FormDisplay();
+        }
+
+        protected void FormDisplay()
+        {
+            if (rblNeedZip.SelectedIndex >= 0 && rblNeedZip.SelectedValue.Equals("1"))
+            {
+                rfvTxtDescr.Enabled = true;
+                rfvTxtDescr.ErrorMessage = "Укажите Спиок ЗИП";
+                txtDescr.Attributes["placeholder"] = "Укажите Спиок ЗИП";
+            }
+            else
+            {
+                rfvTxtDescr.Enabled = false;
+            }
+
+            rblCounterUnavailableContainer.Visible = rblNoCounter.SelectedIndex >=0 && rblNoCounter.SelectedValue.Equals("0");
+            if (!rblCounterUnavailableContainer.Visible)
+            {
+                rblCounterUnavailable.SelectedIndex = -1;
+                rfvTxtCounter.Enabled = true;
+                cvTxtCounter.Enabled = true;
+            }
+            else
+            {
+                rfvTxtCounter.Enabled = false;
+                cvTxtCounter.Enabled = false;
+            }
+                pnlCounters.Visible = rblCounterUnavailableContainer.Visible && rblCounterUnavailable.SelectedIndex >= 0 && rblCounterUnavailable.SelectedValue.Equals("0");
+            
+            
+        }
+
+        protected void rblNoCounter_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            FormDisplay();
+        }
+
+        protected void rblNeedZip_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            FormDisplay();
         }
     }
 }

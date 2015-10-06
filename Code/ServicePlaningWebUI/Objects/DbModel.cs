@@ -4,6 +4,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Web;
 using Newtonsoft.Json;
@@ -12,7 +13,7 @@ namespace ServicePlaningWebUI.Objects
 {
     public class DbModel
     {
-        public static string OdataServiceUri = ConfigurationManager.AppSettings["OdataServiceUri"];//"http://uiis-1:10002/data";
+        public static string OdataServiceUri = ConfigurationManager.AppSettings["OdataServiceUri"];
 
         protected static string GetJson(Uri uri)
         {
@@ -72,6 +73,19 @@ namespace ServicePlaningWebUI.Objects
             }
 
             return response.StatusCode == HttpStatusCode.Created;
+        }
+
+        public static WebClient GetApiClient(string contentType = "application/json")
+        {
+            var baseUri = new Uri(OdataServiceUri);
+            var clientHandler = new WebRequestHandler();
+            CredentialCache cc = new CredentialCache();
+            cc.Add(baseUri, "NTLM", CredentialCache.DefaultNetworkCredentials);
+            clientHandler.Credentials = cc;
+            //if (cert != null) clientHandler.ClientCertificates.Add(cert);
+
+            var client = new WebClient() { BaseAddress = baseUri.ToString(), Credentials = cc };
+            return client;
         }
     }
 }

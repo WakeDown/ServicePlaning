@@ -22,7 +22,7 @@ namespace ServicePlaningWebUI.Db
             using (var cmd = new SqlCommand(spName, conn)
             {
                 CommandType = CommandType.StoredProcedure,
-                CommandTimeout = 1000
+                CommandTimeout = 0
             })
             {
                 if (!string.IsNullOrEmpty(action) && !string.IsNullOrWhiteSpace(action))
@@ -46,7 +46,7 @@ namespace ServicePlaningWebUI.Db
             using (var cmd = new SqlCommand(spName, conn)
             {
                 CommandType = CommandType.StoredProcedure,
-                CommandTimeout = 1000
+                CommandTimeout = 0
             })
             {
                 if (!string.IsNullOrEmpty(action) && !string.IsNullOrWhiteSpace(action))
@@ -71,7 +71,7 @@ namespace ServicePlaningWebUI.Db
             using (var cmd = new SqlCommand(spName, conn)
             {
                 CommandType = CommandType.StoredProcedure,
-                CommandTimeout = 1000
+                CommandTimeout = 0
             })
             {
                 if (!string.IsNullOrEmpty(action) && !string.IsNullOrWhiteSpace(action))
@@ -127,6 +127,18 @@ namespace ServicePlaningWebUI.Db
         {
             bool result = false;
 
+            if (!String.IsNullOrEmpty(value.ToString()))
+            {
+                result = Convert.ToBoolean(value);
+            }
+
+            return result;
+        }
+
+        protected bool? GetValueBoolOrNull(object value)
+        {
+            bool result = false;
+            if (value == DBNull.Value) return null;
             if (!String.IsNullOrEmpty(value.ToString()))
             {
                 result = Convert.ToBoolean(value);
