@@ -28,6 +28,9 @@ namespace ServicePlaningWebUI.Models
         public bool? NeedZip { get; set; }
         public bool? NoCounter { get; set; }
         public bool? CounterUnavailable { get; set; }
+        public string ZipDescr { get; set; }
+        public string DateWorkStart { get; set; }
+        public string DateWorkEnd { get; set; }
 
         public ServiceCame()
         {
@@ -68,6 +71,9 @@ namespace ServicePlaningWebUI.Models
                 NeedZip = GetValueBoolOrNull(dr["need_zip"].ToString());
                 NoCounter = GetValueBoolOrNull(dr["no_counter"].ToString());
                 CounterUnavailable = GetValueBoolOrNull(dr["counter_unavailable"].ToString());
+                ZipDescr = dr["zip_descr"].ToString();
+                DateWorkStart = dr["date_work_start"].ToString();
+                DateWorkEnd = dr["date_work_end"].ToString();
             }
         }
 
@@ -91,19 +97,23 @@ namespace ServicePlaningWebUI.Models
             SqlParameter pNeedZip = new SqlParameter() { ParameterName = "need_zip", Value = NeedZip, SqlDbType = SqlDbType.Bit };
             SqlParameter pNoCounter = new SqlParameter() { ParameterName = "no_counter", Value = NoCounter, SqlDbType = SqlDbType.Bit };
             SqlParameter pCounterUnavailable = new SqlParameter() { ParameterName = "counter_unavailable", Value = CounterUnavailable, SqlDbType = SqlDbType.Bit };
+            SqlParameter pZipDescr = new SqlParameter() { ParameterName = "zip_descr", Value = ZipDescr, DbType = DbType.AnsiString };
+            SqlParameter pDateWorkStart = new SqlParameter() { ParameterName = "date_work_start", Value = DateWorkStart, DbType = DbType.AnsiString };
+            SqlParameter pDateWorkEnd = new SqlParameter() { ParameterName = "date_work_end", Value = DateWorkEnd, DbType = DbType.AnsiString };
 
-            DataTable dt = ExecuteQueryStoredProcedure(Srvpl.sp, "saveServiceCame", pId, pIdServiceClaim, pDescr, pDateCame, pCounter, pIdServiceEngeneer, pIdServiceActionType, pIdCreator, pCounterColour, pIdAktScan, pIsSysAdmin, pSerialNum, pNoPay, pProcessEnabled, pDeviceEnabled, pNeedZip, pNoCounter, pCounterUnavailable);
+            DataTable dt = ExecuteQueryStoredProcedure(Srvpl.sp, "saveServiceCame", pId, pIdServiceClaim, pDescr, pDateCame, pCounter, pIdServiceEngeneer, pIdServiceActionType, pIdCreator, pCounterColour, pIdAktScan, pIsSysAdmin, pSerialNum, pNoPay, pProcessEnabled, pDeviceEnabled, pNeedZip, pNoCounter, pCounterUnavailable, pZipDescr, pDateWorkStart, pDateWorkEnd);
 
-            try
-            {
-                string id = dt.Rows[0]["id"].ToString();
-                Uri uri = new Uri(String.Format("{0}/Claim/RemoteCreate4ZipClaim?idServiceCame={1}", DbModel.OdataServiceUri, id));
-                DbModel.GetApiClient().DownloadString(uri);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Инцидент для заявки на ЗИП НЕ создан. Акт СОХРАНЕН! {ex.Message}");
-            }
+            //Автоматическое создание инцедентов - временно ОТКЛЮЧЕНО 09.10.2015
+            //try
+            //{
+            //    string id = dt.Rows[0]["id"].ToString();
+            //    Uri uri = new Uri(String.Format("{0}/Claim/RemoteCreate4ZipClaim?idServiceCame={1}", DbModel.OdataServiceUri, id));
+            //    DbModel.GetApiClient().DownloadString(uri);
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception($"Инцидент для заявки на ЗИП НЕ создан. Акт СОХРАНЕН! {ex.Message}");
+            //}
         }
         
         public void Delete(int id)

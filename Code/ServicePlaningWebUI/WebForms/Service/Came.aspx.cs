@@ -16,6 +16,7 @@ namespace ServicePlaningWebUI.WebForms.Service
     {
         protected string FormTitle;
         protected const string ListUrl = "~/Service";
+        protected const string CameEditorUrl = "~/Service/Editor/Came";
 
         protected bool UserIsSysAdmin
         {
@@ -56,6 +57,7 @@ namespace ServicePlaningWebUI.WebForms.Service
         {
             MainHelper.DdlSetSelectedValue(ref ddlServiceEngeneer, User.Id);
             //MainHelper.TxtSetDate(ref txtDateCame, DateTime.Now, true, true);
+            MainHelper.DdlSetSelectedValue(ref ddlServiceActionType, "1");
         }
 
         protected new void Page_Load(object sender, EventArgs e)
@@ -91,9 +93,10 @@ namespace ServicePlaningWebUI.WebForms.Service
             {
                 SetDefaultValues();
                 FormDisplay();
+                txtClaimSelection.Focus();
             }
-
-            txtClaimSelection.Focus();
+            btnSaveAndAddNew.Attributes.Add("onClick", "this.innerText='Идет сохранение...';");
+            //
         }
 
         private void FillLists()
@@ -111,14 +114,18 @@ namespace ServicePlaningWebUI.WebForms.Service
             try
             {
                 Save();
+                RedirectWithParams(String.Empty, false, CameEditorUrl);
                 //RedirectWithParams();
                 FormClear();
                 SetDefaultValues();
+                
             }
             catch (Exception ex)
             {
                 ServerMessageDisplay(new[] { phServerMessage }, ex.Message, true);
             }
+
+            
         }
 
         private void FormClear()
@@ -176,7 +183,10 @@ namespace ServicePlaningWebUI.WebForms.Service
                 DeviceEnabled = MainHelper.RblGetValueBool(ref rblDeviceEnabled),
                 NeedZip = MainHelper.RblGetValueBool(ref rblNeedZip),
                 NoCounter = MainHelper.RblGetValueBool(ref rblNoCounter),
-                CounterUnavailable = MainHelper.RblGetValueBool(ref rblCounterUnavailable)
+                CounterUnavailable = MainHelper.RblGetValueBool(ref rblCounterUnavailable),
+                ZipDescr = MainHelper.TxtGetText(ref txtZipDescr),
+                DateWorkStart = MainHelper.TxtGetText(ref txtDateWorkStart),
+                DateWorkEnd = MainHelper.TxtGetText(ref txtDateWorkEnd)
             };
 
             return serviceCame;
@@ -210,6 +220,9 @@ namespace ServicePlaningWebUI.WebForms.Service
             MainHelper.RblSetValue(ref rblNoCounter, serviceCame.NoCounter);
             MainHelper.RblSetValue(ref rblCounterUnavailable, serviceCame.CounterUnavailable);
             MainHelper.RblSetValue(ref rblNoPay, serviceCame.NoPay);
+            MainHelper.TxtSetText(ref txtZipDescr, serviceCame.ZipDescr);
+            MainHelper.TxtSetText(ref txtDateWorkStart, serviceCame.DateWorkStart);
+            MainHelper.TxtSetText(ref txtDateWorkEnd, serviceCame.DateWorkEnd);
         }
 
         private void RegisterStartupScripts()
@@ -408,15 +421,38 @@ namespace ServicePlaningWebUI.WebForms.Service
 
         protected void FormDisplay()
         {
+            if (rblProcessEnabled.SelectedIndex >= 0 && rblProcessEnabled.SelectedValue.Equals("0"))
+            {
+                MainHelper.RblSetValue(ref rblDeviceEnabled, "0");
+            }
+
             if (rblNeedZip.SelectedIndex >= 0 && rblNeedZip.SelectedValue.Equals("1"))
             {
-                rfvTxtDescr.Enabled = true;
-                rfvTxtDescr.ErrorMessage = "Укажите Спиок ЗИП";
-                txtDescr.Attributes["placeholder"] = "Укажите Спиок ЗИП";
+                
+                zipDescrContainer.Visible = true;
+                refvtxtZipDescr.Enabled = true;
+                refvtxtZipDescr.ErrorMessage = "Укажите Спиок ЗИП";
+                txtZipDescr.Attributes["placeholder"] = "Укажите спиок ЗИП";
+                zipDescrLabel.InnerText = "Спиок ЗИП";
+                
             }
             else
             {
-                rfvTxtDescr.Enabled = false;
+                zipDescrContainer.Visible = false;
+                refvtxtZipDescr.Enabled = false;
+                
+            }
+
+
+
+            if (rblProcessEnabled.SelectedValue.Equals("0") && rblDeviceEnabled.SelectedValue.Equals("0") &&
+                rblNeedZip.SelectedValue.Equals("0"))
+            {
+                zipDescrContainer.Visible = true;
+                refvtxtZipDescr.Enabled = true;
+                refvtxtZipDescr.ErrorMessage = "Укажите что случилось";
+                txtZipDescr.Attributes["placeholder"] = "Укажите что случилось";
+                zipDescrLabel.InnerText = "Что случилось";
             }
 
             rblCounterUnavailableContainer.Visible = rblNoCounter.SelectedIndex >=0 && rblNoCounter.SelectedValue.Equals("0");
@@ -425,15 +461,29 @@ namespace ServicePlaningWebUI.WebForms.Service
                 rblCounterUnavailable.SelectedIndex = -1;
                 rfvTxtCounter.Enabled = true;
                 cvTxtCounter.Enabled = true;
+                rfvrblCounterUnavailable.Enabled = true;
             }
             else
             {
+                rfvrblCounterUnavailable.Enabled = false;
                 rfvTxtCounter.Enabled = false;
                 cvTxtCounter.Enabled = false;
             }
                 pnlCounters.Visible = rblCounterUnavailableContainer.Visible && rblCounterUnavailable.SelectedIndex >= 0 && rblCounterUnavailable.SelectedValue.Equals("0");
 
             rfvTxtCounter.Enabled = cvTxtCounter .Enabled= pnlCounters.Visible;
+
+            if (rblCounterUnavailableContainer.Visible && rblCounterUnavailable.SelectedValue.Equals("1"))
+            {
+                rfvTxtDescr.Enabled = true;
+                txtDescr.Attributes["placeholder"] = "Укажите что со счетчиком";
+                descrContainer.Visible = true;
+            }
+            else
+            {
+                descrContainer.Visible = false;
+                rfvTxtDescr.Enabled = false;
+            }
         }
 
         protected void rblNoCounter_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -442,6 +492,15 @@ namespace ServicePlaningWebUI.WebForms.Service
         }
 
         protected void rblNeedZip_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            FormDisplay();
+        }
+
+        protected void rblProcessEnabled_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            FormDisplay();
+        }
+        protected void rblDeviceEnabled_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             FormDisplay();
         }

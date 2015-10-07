@@ -166,6 +166,15 @@ namespace ServicePlaningWebUI.WebForms.Service {
         protected global::System.Web.UI.WebControls.RadioButtonList rblProcessEnabled;
         
         /// <summary>
+        /// rfvrblProcessEnabled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvrblProcessEnabled;
+        
+        /// <summary>
         /// rblDeviceEnabled control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,15 @@ namespace ServicePlaningWebUI.WebForms.Service {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblDeviceEnabled;
+        
+        /// <summary>
+        /// rfvrblDeviceEnabled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvrblDeviceEnabled;
         
         /// <summary>
         /// rblNeedZip control.
@@ -184,6 +202,51 @@ namespace ServicePlaningWebUI.WebForms.Service {
         protected global::System.Web.UI.WebControls.RadioButtonList rblNeedZip;
         
         /// <summary>
+        /// rfvrblNeedZip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvrblNeedZip;
+        
+        /// <summary>
+        /// zipDescrContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl zipDescrContainer;
+        
+        /// <summary>
+        /// zipDescrLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl zipDescrLabel;
+        
+        /// <summary>
+        /// txtZipDescr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtZipDescr;
+        
+        /// <summary>
+        /// refvtxtZipDescr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator refvtxtZipDescr;
+        
+        /// <summary>
         /// rblNoCounter control.
         /// </summary>
         /// <remarks>
@@ -191,6 +254,15 @@ namespace ServicePlaningWebUI.WebForms.Service {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblNoCounter;
+        
+        /// <summary>
+        /// rfvrblNoCounter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvrblNoCounter;
         
         /// <summary>
         /// rblCounterUnavailableContainer control.
@@ -209,6 +281,15 @@ namespace ServicePlaningWebUI.WebForms.Service {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblCounterUnavailable;
+        
+        /// <summary>
+        /// rfvrblCounterUnavailable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvrblCounterUnavailable;
         
         /// <summary>
         /// pnlCounters control.
@@ -265,6 +346,105 @@ namespace ServicePlaningWebUI.WebForms.Service {
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
         
         /// <summary>
+        /// descrContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl descrContainer;
+        
+        /// <summary>
+        /// txtDescr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescr;
+        
+        /// <summary>
+        /// rfvTxtDescr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtDescr;
+        
+        /// <summary>
+        /// txtDateWorkStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDateWorkStart;
+        
+        /// <summary>
+        /// rfvtxtDateWorkStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtDateWorkStart;
+        
+        /// <summary>
+        /// revtxtDateWorkStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revtxtDateWorkStart;
+        
+        /// <summary>
+        /// txtDateWorkEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDateWorkEnd;
+        
+        /// <summary>
+        /// rfvtxtDateWorkEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtDateWorkEnd;
+        
+        /// <summary>
+        /// revtxtDateWorkEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revtxtDateWorkEnd;
+        
+        /// <summary>
+        /// rblNoPay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rblNoPay;
+        
+        /// <summary>
+        /// rfvrblNoPay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvrblNoPay;
+        
+        /// <summary>
         /// counterNoteMessage control.
         /// </summary>
         /// <remarks>
@@ -290,32 +470,5 @@ namespace ServicePlaningWebUI.WebForms.Service {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnSaveAndAddNew;
-        
-        /// <summary>
-        /// rblNoPay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblNoPay;
-        
-        /// <summary>
-        /// txtDescr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescr;
-        
-        /// <summary>
-        /// rfvTxtDescr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtDescr;
     }
 }

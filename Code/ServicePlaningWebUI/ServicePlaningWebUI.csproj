@@ -227,6 +227,7 @@
     <Content Include="Scripts\arr.js" />
     <Content Include="Scripts\filter-exp-mem.js" />
     <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\jquery-mask.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
     <Content Include="Scripts\jquery.filterByText.js" />
