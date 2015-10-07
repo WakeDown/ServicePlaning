@@ -6,6 +6,25 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphFormBody" runat="server">
     <div id="formDevices" class="form-horizontal val-form" role="form">
+    <div class="form-group">
+            <label for='<%=ddlContractor.ClientID %>' class="col-sm-2 control-label">Контрагент</label>
+            <div class="col-sm-10">
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <ContentTemplate>
+                        <div class="input-group full-width">
+                            <span class="input-group-btn width-20">
+                                <asp:TextBox ID="txtContractorSelection" runat="server" class="form-control width-20 input-sm" placeholder="поиск" MaxLength="30" AutoPostBack="True" OnTextChanged="txtContractorSelection_OnTextChanged"></asp:TextBox>
+                            </span>
+                            <asp:DropDownList ID="ddlContractor" runat="server" CssClass="form-control input-sm">
+                            </asp:DropDownList>
+                            <span class="help-block">
+                                <%--<asp:CompareValidator ID="cvTxtSpeed" runat="server" ErrorMessage="Введите число" CssClass="text-danger" ControlToValidate="txtSpeed" Type="Integer" Operator="DataTypeCheck" Display="Dynamic" SetFocusOnError="True" ValidationGroup="vgFilter"></asp:CompareValidator>--%>
+                            </span>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
         <div class="form-group">
             <label for='<%=txtClaimSelection.ClientID %>' class="col-sm-2 control-label required-mark">Серийный номер</label>
             <div class="col-sm-10">
@@ -20,8 +39,8 @@
                         }
                     }
                 </script>
+                
                 <div class="input-group">
-
                     <asp:TextBox ID="txtClaimSelection" runat="server" CssClass="form-control" placeholder="поиск" MaxLength="50"
                         onkeypress="return EnterEvent(event)"></asp:TextBox>
                     <div class="input-group-addon">

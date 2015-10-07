@@ -62,13 +62,14 @@ namespace ServicePlaningWebUI.Db
                 return dt;
             }
 
-            public static DataTable GetSerialNumList(string filterText)
+            public static DataTable GetSerialNumList(string filterText, int? idContractor)
             {
                 SqlParameter pFilterText = new SqlParameter() { ParameterName = "filter_text", Value = filterText, DbType = DbType.AnsiString };
+                SqlParameter pIdContracotr = new SqlParameter() { ParameterName = "id_contractor", Value = idContractor, SqlDbType = SqlDbType.Int };
 
                 DataTable dt = new DataTable();
 
-                dt = ExecuteQueryStoredProcedure(sp, "getSerialNumList", pFilterText);
+                dt = ExecuteQueryStoredProcedure(sp, "getSerialNumList", pFilterText, pIdContracotr);
                 return dt;
             }
 
@@ -375,13 +376,14 @@ namespace ServicePlaningWebUI.Db
                 return GetSelectionList("getServiceClaimSelectionList", pIdServiceClaim, pIdServiceClaimStatus);
             }
 
-            public static DataTable GeClaimFullNameSelectionList(string serialNum = null, int? idServiceCame = null, int? idServiceClaim = null)
+            public static DataTable GeClaimFullNameSelectionList(string serialNum = null, int? idServiceCame = null, int? idServiceClaim = null, int? idContractor = null)
             {
                 SqlParameter pSerialNum = new SqlParameter() { ParameterName = "serial_num", Value = serialNum, DbType = DbType.AnsiString };
                 SqlParameter pIdServiceCame = new SqlParameter() { ParameterName = "id_service_came", Value = idServiceCame, DbType = DbType.AnsiString };
                 SqlParameter pIdServiceClaim = new SqlParameter() { ParameterName = "id_service_claim", Value = idServiceClaim, DbType = DbType.AnsiString };
+                SqlParameter pIdContractor = new SqlParameter() { ParameterName = "id_contractor", Value = idContractor, SqlDbType = SqlDbType.Int };
 
-                return GetSelectionList2("getServiceClaimFullNameSelectionList", pSerialNum, pIdServiceCame, pIdServiceClaim);
+                return GetSelectionList2("getServiceClaimFullNameSelectionList", pSerialNum, pIdServiceCame, pIdServiceClaim, pIdContractor);
             }
 
             #endregion

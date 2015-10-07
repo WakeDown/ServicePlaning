@@ -50,6 +50,7 @@ namespace ServicePlaningWebUI.WebForms.Service
             if (!IsPostBack)
             {
                 FillLists();
+                
             }
         }
 
@@ -107,6 +108,16 @@ namespace ServicePlaningWebUI.WebForms.Service
             string serviceEngeneersRightGroup = ConfigurationManager.AppSettings["serviceEngeneersRightGroup"];
             MainHelper.DdlFill(ref ddlServiceEngeneer, Db.Db.Users.GetUsersSelectionList(serviceEngeneersRightGroup), true);
 
+
+            if (!String.IsNullOrEmpty(Request.QueryString["ctor"]))
+            {
+                string idContractorStr = Request.QueryString["ctor"].ToString();
+                int? idContractor = null;
+                int ctr;
+                int.TryParse(idContractorStr, out ctr);
+                if (ctr > 0)idContractor = ctr;
+                FillCtorList(idContractor);
+            }
         }
 
         protected void btnSaveAndAddNew_Click(object sender, EventArgs e)
@@ -114,7 +125,8 @@ namespace ServicePlaningWebUI.WebForms.Service
             try
             {
                 Save();
-                RedirectWithParams(String.Empty, false, CameEditorUrl);
+                int? idContracotr = GetContractorFilterId();
+                RedirectWithParams($"ctor={idContracotr}", true, CameEditorUrl);
                 //RedirectWithParams();
                 FormClear();
                 SetDefaultValues();
@@ -263,8 +275,13 @@ namespace ServicePlaningWebUI.WebForms.Service
         protected void btnClaimSelection_Click(object sender, EventArgs e)
         {
             string serialNum = MainHelper.TxtGetText(ref txtClaimSelection);
-
-            FillClaimList(serialNum);
+            string idContractorStr = MainHelper.DdlGetSelectedValue(ref ddlContractor, true);
+            int? idContractor = null;
+            if (idContractorStr != null)
+            {
+                idContractor = int.Parse(idContractorStr.ToString());
+            }
+            FillClaimList(serialNum, idContractor: idContractor);
 
             if (lbClaim.Items.Count > 0)
             {
@@ -288,9 +305,9 @@ namespace ServicePlaningWebUI.WebForms.Service
             lbClaim.Focus();
         }
 
-        protected void FillClaimList(string serialNum = null, int? idServiceCame = null, int? idServiceClaim = null)
+        protected void FillClaimList(string serialNum = null, int? idServiceCame = null, int? idServiceClaim = null, int? idContractor=null)
         {
-            MainHelper.LbFill(ref lbClaim, Db.Db.Srvpl.GeClaimFullNameSelectionList(serialNum, idServiceCame, idServiceClaim));
+            MainHelper.LbFill(ref lbClaim, Db.Db.Srvpl.GeClaimFullNameSelectionList(serialNum, idServiceCame, idServiceClaim, idContractor: idContractor));
         }
 
         protected void lbClaim_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -376,15 +393,29 @@ namespace ServicePlaningWebUI.WebForms.Service
             return flag;
         }
 
+        public int? GetContractorFilterId()
+        {
+            string idContractorStr = MainHelper.DdlGetSelectedValue(ref ddlContractor, true);
+            int? idContracotr = null;
+            if (idContractorStr != null)
+            {
+                idContracotr = int.Parse(idContractorStr.ToString());
+            }
+            return idContracotr;
+        }
+
         protected void btnShowSerialNums_Click(object sender, EventArgs e)
         {
             lbSerialNums.Items.Clear();
 
             string serial = MainHelper.TxtGetText(ref txtClaimSelection);
+            int? idContracotr = GetContractorFilterId();
+
+
             if (!String.IsNullOrEmpty(serial))
             {
                 lbSerialNums.Visible = true;
-                var dt = Db.Db.Srvpl.GetSerialNumList(serial);
+                var dt = Db.Db.Srvpl.GetSerialNumList(serial, idContracotr);
                 if (dt.Rows.Count > 0)
                 {
                     MainHelper.LbFill(ref lbSerialNums, dt);
@@ -503,6 +534,30 @@ namespace ServicePlaningWebUI.WebForms.Service
         protected void rblDeviceEnabled_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             FormDisplay();
+        }
+        protected void txtContractorSelection_OnTextChanged(object sender, EventArgs e)
+        {
+            FillCtorList();
+        }
+
+        protected void FillCtorList(int? idContractor = null)
+        {
+            if (idContractor.HasValue)
+            {
+                MainHelper.DdlFill(ref ddlContractor, Db.Db.Unit.GetContractorSelectionList(idContractor:idContractor.Value), true,
+                    MainHelper.ListFirstItemType.SelectAll);
+            }
+            else
+            {
+                string text = MainHelper.TxtGetText(ref txtContractorSelection);
+                MainHelper.DdlFill(ref ddlContractor, Db.Db.Unit.GetContractorSelectionList(text), true,
+                    MainHelper.ListFirstItemType.SelectAll);
+            }
+            if (ddlContractor.Items.Count > 1)
+            {
+                ddlContractor.SelectedIndex = 1;
+            }
+            ddlContractor.Focus();
         }
     }
 }
