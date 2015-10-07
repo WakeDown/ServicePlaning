@@ -270,17 +270,17 @@ namespace ServicePlaningWebUI.WebForms.Service
 
             script = String.Format(@"if ($('#{0}').val() == '0') {{ return confirm('Вы действительно хотите сохранить 0 в поле счетчик?'); }};", txtCounter.ClientID);
             btnSaveAndAddNew.OnClientClick = script;
+
+            script = $"$(\"[timemask = '1']\").mask(\"99:99\");";
+            ScriptManager.RegisterStartupScript(this, GetType(), "timeMask", script, true);
         }
 
         protected void btnClaimSelection_Click(object sender, EventArgs e)
         {
             string serialNum = MainHelper.TxtGetText(ref txtClaimSelection);
             string idContractorStr = MainHelper.DdlGetSelectedValue(ref ddlContractor, true);
-            int? idContractor = null;
-            if (idContractorStr != null)
-            {
-                idContractor = int.Parse(idContractorStr.ToString());
-            }
+            int? idContractor = GetContractorFilterId();
+            
             FillClaimList(serialNum, idContractor: idContractor);
 
             if (lbClaim.Items.Count > 0)
@@ -399,7 +399,9 @@ namespace ServicePlaningWebUI.WebForms.Service
             int? idContracotr = null;
             if (idContractorStr != null)
             {
-                idContracotr = int.Parse(idContractorStr.ToString());
+                int ctor;
+                int.TryParse(idContractorStr, out ctor);
+                if (ctor > 0) idContracotr = ctor;
             }
             return idContracotr;
         }

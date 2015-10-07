@@ -300,10 +300,21 @@
                         <a type="button" class="btn btn-default btn-lg" data-toggle="tooltip" title="к списку заявок" href='<%= FriendlyUrl.Href(ListUrl) %>'><i class="fa fa-mail-reply "></i></a>
                     </div>
                 </div>
+                <%--<script type="text/javascript">
+                    $(document).ready(function () {
+                        $("[timemask='1']").mask("99:99");
+                    });
+        $(document).on('submit', 'form', function () {
+            var button = $(this).find("[type='submit']");
+            setTimeout(function () {
+                button.prop('disabled', true);
+            }, 0);
+        });
+    </script>--%>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         $(document).ready(function () {
             $("[timemask='1']").mask("99:99");
         });
@@ -313,6 +324,6 @@
                 button.prop('disabled', true);
             }, 0);
         });
-    </script>
+    </script>--%>
 </asp:Content>
 
