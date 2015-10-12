@@ -152,7 +152,7 @@ namespace ServicePlaningWebUI.WebForms.Masters
 
             if (UserIsServiceTech)
             {
-                liSettings.Visible = liCounters.Visible = liContract2device.Visible = true;
+                liSettings.Visible = liCounters.Visible = liContract2device.Visible = liContracts.Visible = liDevices.Visible = true;
             }
         }
 
