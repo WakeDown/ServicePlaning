@@ -19,6 +19,7 @@ namespace ServicePlaningWebUI.WebForms.Masters
         private string sysAdminRightGroup = ConfigurationManager.AppSettings["sysAdminRightGroup"];
         string serviceAdminRightGroup = ConfigurationManager.AppSettings["serviceAdminRightGroup"];
         string serviceEngeneersRightGroup = ConfigurationManager.AppSettings["serviceEngeneersRightGroup"];
+        string serviceTechRightGroupSid = ConfigurationManager.AppSettings["serviceTechRightGroupSid"];
         string dsuPlanAccessRightGroup = ConfigurationManager.AppSettings["dsuPlanAccessRightGroup"];
         string serviceManagerRightGroup = ConfigurationManager.AppSettings["serviceManagerRightGroup"];
         string dsuPlanReportsRightGroup = ConfigurationManager.AppSettings["dsuPlanReportsRightGroup"];
@@ -27,6 +28,7 @@ namespace ServicePlaningWebUI.WebForms.Masters
         private string sysAdminRightGroupVSKey = "sysAdminRightGroupVSKey";
         private string serviceAdminRightGroupVSKey = "serviceAdminRightGroupVSKey";
         private string serviceEngeneersRightGroupVSKey = "serviceEngeneersRightGroupVSKey";
+        private string serviceTechRightGroupSidVSKey = "serviceTechRightGroupSidVSKey";
         private string serviceManagerRightGroupVSKey = "serviceManagerRightGroupVSKey";
         private string dsuPlanReportsRightGroupVSKey = "dsuPlanReportsRightGroupVSKey";
 
@@ -55,6 +57,12 @@ namespace ServicePlaningWebUI.WebForms.Masters
             set { ViewState[serviceEngeneersRightGroupVSKey] = value; }
         }
 
+        public bool UserIsServiceTech
+        {
+            get { return (bool)ViewState[serviceTechRightGroupSidVSKey]; }
+            set { ViewState[serviceTechRightGroupSidVSKey] = value; }
+        }
+
         public bool UserIsServiceManager
         {
             get { return (bool)ViewState[serviceManagerRightGroupVSKey]; }
@@ -79,6 +87,7 @@ namespace ServicePlaningWebUI.WebForms.Masters
                 UserIsServiceEngeneer = Db.Db.Users.CheckUserRights(User.Login, serviceEngeneersRightGroup);
                 UserIsServiceManager = Db.Db.Users.CheckUserRights(User.Login, serviceManagerRightGroup);
                 UserIsReport = Db.Db.Users.CheckUserRights(User.Login, dsuPlanReportsRightGroup);
+                UserIsServiceTech = Db.Db.Users.CheckUserRights(User.Login, groupSid:serviceTechRightGroupSid);
 
                 if (!UserIsServiceEngeneer && !UserIsServiceManager && !UserIsSysAdmin && !UserIsServiceAdmin && !UserIsReport)
                 {
@@ -89,17 +98,17 @@ namespace ServicePlaningWebUI.WebForms.Masters
                 SetUserName();
 
                 //Автопереход для инженеров на страницу Отчета
-                if (!UserIsSysAdmin && (UserIsServiceEngeneer /*|| userIsSysAdmin*/) && Request.Path.Equals("/"))
+                if (!UserIsSysAdmin && !UserIsServiceTech && (UserIsServiceEngeneer /*|| userIsSysAdmin*/) && Request.Path.Equals("/"))
                 {
                     Response.Redirect(FriendlyUrl.Href("~/Reports/PlanExecute"));
                 }
 
-                if (!UserIsSysAdmin && UserIsServiceManager && !Request.Path.Equals(FriendlyUrl.Href("~/Reports/PlanExecute")))
+                if (!UserIsSysAdmin && !UserIsServiceTech && UserIsServiceManager && !Request.Path.Equals(FriendlyUrl.Href("~/Reports/PlanExecute")))
                 {
                     Response.Redirect(FriendlyUrl.Href("~/Reports/PlanExecute"));
                 }
 
-                if (!UserIsSysAdmin && UserIsReport && !Request.Path.Equals(FriendlyUrl.Href("~/Reports/PlanExecute")) &&
+                if (!UserIsSysAdmin && !UserIsServiceTech && UserIsReport && !Request.Path.Equals(FriendlyUrl.Href("~/Reports/PlanExecute")) &&
                     !Request.Path.Equals(FriendlyUrl.Href("~/Reports/Payment")) && !Request.Path.Equals(FriendlyUrl.Href("~/Reports/Counters")) && !Request.Path.Equals(FriendlyUrl.Href("~/Reports/CountersDetail")))
                 {
                     Response.Redirect(FriendlyUrl.Href("~/Reports/PlanExecute"));
@@ -139,6 +148,11 @@ namespace ServicePlaningWebUI.WebForms.Masters
             if (UserIsReport)
             {
                 liReports.Visible = liPayment.Visible = liPlanExec.Visible = liCounters.Visible = true;
+            }
+
+            if (UserIsServiceTech)
+            {
+                liSettings.Visible = liCounters.Visible = liContract2device.Visible = true;
             }
         }
 

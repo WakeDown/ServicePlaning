@@ -173,23 +173,46 @@ namespace ServicePlaningWebUI.Db
                 return dt;
             }
 
-            public static bool CheckUserRights(string userLogin, string rightName)
+            public static bool CheckUserRights(string userLogin, string rightName=null, string groupSid = null)
             {
-                string programName = WebConfigurationManager.AppSettings["progName"];
-                bool flag = false;
-
-                SqlParameter pProgramName = new SqlParameter() { ParameterName = "program_name", Value = programName, DbType = DbType.AnsiString };
-                SqlParameter pRightName = new SqlParameter() { ParameterName = "sys_name", Value = rightName, DbType = DbType.AnsiString };
-
-                DataTable dt = new DataTable();
-
-                dt = ExecuteQueryStoredProcedure(sp, "getUserGroupSid", pProgramName, pRightName);
-
-                if (dt.Rows.Count > 0)
+ bool flag = false;
+                string sid = String.Empty;
+                if (String.IsNullOrEmpty(groupSid))
                 {
-                    DataRow dr = dt.Rows[0];
+                    string programName = WebConfigurationManager.AppSettings["progName"];
+                    SqlParameter pProgramName = new SqlParameter()
+                    {
+                        ParameterName = "program_name",
+                        Value = programName,
+                        DbType = DbType.AnsiString
+                    };
+                    SqlParameter pRightName = new SqlParameter()
+                    {
+                        ParameterName = "sys_name",
+                        Value = rightName,
+                        DbType = DbType.AnsiString
+                    };
 
-                    string sid = dr["sid"].ToString();
+                    DataTable dt = new DataTable();
+
+                    dt = ExecuteQueryStoredProcedure(sp, "getUserGroupSid", pProgramName, pRightName);
+                    if (dt.Rows.Count > 0)
+                    {
+                        DataRow dr = dt.Rows[0];
+
+                        sid = dr["sid"].ToString();
+                    }
+                }
+                else
+                {
+                    sid = groupSid;
+                }
+
+                //if (dt.Rows.Count > 0)
+                //{
+                //    DataRow dr = dt.Rows[0];
+
+                //    string sid = dr["sid"].ToString();
 
                     try
                     {
@@ -203,7 +226,7 @@ namespace ServicePlaningWebUI.Db
                     {
                         flag = false;
                     }
-                }
+                //}
 
                 return flag;
             }
