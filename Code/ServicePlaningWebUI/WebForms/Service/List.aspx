@@ -219,7 +219,7 @@
             <asp:BoundField DataField="service_engeneer" SortExpression="service_engeneer" HeaderText="ФИО инженера" HeaderStyle-CssClass="sorted-header" ItemStyle-CssClass="nowrap" />
             <asp:TemplateField ItemStyle-CssClass="min-width">
                 <ItemTemplate>
-                    <asp:LinkButton ID="btnDelete" runat="server" OnClick="btnDelete_OnClick" CommandArgument='<%#Eval("id_service_claim") %>' OnClientClick="return DeleteConfirm('заявку')" CssClass="btn btn-link" data-toggle="tooltip" title="удалить" Visible='<%#UserIsSysAdmin %>'><i class="fa fa-trash-o fa-lg"></i></asp:LinkButton>
+                    <asp:LinkButton ID="btnDelete" runat="server" OnClick="btnDelete_OnClick" CommandArgument='<%#Eval("id_service_claim") %>' OnClientClick="return DeleteConfirm('заявку')" CssClass="btn btn-link" data-toggle="tooltip" title="удалить" Visible='<%#UserIsSysAdmin || UserIsServiceTech %>'><i class="fa fa-trash-o fa-lg"></i></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

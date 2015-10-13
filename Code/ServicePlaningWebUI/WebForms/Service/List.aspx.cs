@@ -19,6 +19,8 @@ namespace ServicePlaningWebUI.WebForms.Service
         string serviceAdminRightGroup = ConfigurationManager.AppSettings["serviceAdminRightGroup"];
         protected bool UserIsServiceAdmin { get { return (Page.Master.Master as Site).UserIsServiceAdmin; } }
         protected bool UserIsSysAdmin {get{return (Page.Master.Master as Site).UserIsSysAdmin;}}
+        protected bool UserIsServiceTech { get { return (Page.Master.Master as Site).UserIsServiceTech; } }
+        
         private const string sesKeyIsEdit = "sesKeyIsEdit";
 
         private bool isSearch

@@ -23,6 +23,12 @@ namespace ServicePlaningWebUI.WebForms.Service
             get { return (Page.Master.Master as Site).UserIsSysAdmin; }
         }
 
+        protected bool UserIsServiceTech
+        {
+            get { return (Page.Master.Master as Site).UserIsServiceTech; }
+        }
+        
+
         private int Id
         {
             get
@@ -158,7 +164,7 @@ namespace ServicePlaningWebUI.WebForms.Service
         {
             ServiceCame serviceCame = GetFormData();
             string serialNum = MainHelper.TxtGetText(ref txtClaimSelection);
-            serviceCame.Save(UserIsSysAdmin, serialNum);
+            serviceCame.Save(UserIsSysAdmin || UserIsServiceTech, serialNum);
             ServiceClaim serviceClaim = new ServiceClaim(serviceCame.IdServiceClaim);
             string messageText = String.Format("Сохранение отметки об обслуживании заявки № {0} прошло успешно", serviceClaim.Number);
             ServerMessageDisplay(new[] { phServerMessage }, messageText);
