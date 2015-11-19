@@ -107,7 +107,7 @@
         </ul>
     </div>
             </div>
-    <div>
+    <div id="changeAsBtnContainer" runat="server" Visible="False">
         <div class="col-lg-3">
     <asp:DropDownList ID="ddlNewServiceAdmin" runat="server" CssClass="form-control input-sm">
                 </asp:DropDownList></div><asp:Button ID="btnChangeServiceAdmin" runat="server" Text="сменить СА у отмеченных" CssClass="btn btn-default" OnClick="btnChangeServiceAdmin_OnClick" />

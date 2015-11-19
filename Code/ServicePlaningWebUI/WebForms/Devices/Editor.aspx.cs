@@ -208,9 +208,10 @@ namespace ServicePlaningWebUI.WebForms.Devices
             ScriptManager.RegisterStartupScript(this, GetType(), "cdseatAge", script, true);
 
             script = String.Format(@"initControlDisableStateElementAndTextIfChecked('{0}', '{1}', '{2}', false, '{3}');", chkNoSerialNum.ClientID, txtSerialNum.ClientID, "неизвестно", rfvTxtSerialNum.ClientID);
+            ScriptManager.RegisterStartupScript(this, GetType(), "chkNoSerialNum", script, true);
             script = String.Format(@"initControlDisableStateElementAndTextIfChecked('{0}', '{1}', '{2}', false, '{3}');", chkNoInvNum.ClientID, txtInvNum.ClientID, "неизвестно", rfvTxtInvNum.ClientID);
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "cdseatSerialNum", script, true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "chkNoInvNum", script, true);
             //</Деактивация поля>
         }
     }

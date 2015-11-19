@@ -98,7 +98,10 @@ namespace ServicePlaningWebUI.WebForms.Service
         {
             if (!IsPostBack)
             {
-                SetDefaultValues();
+                if (Id > 0)
+                {
+                    SetDefaultValues();
+                }
                 FormDisplay();
                 txtClaimSelection.Focus();
             }

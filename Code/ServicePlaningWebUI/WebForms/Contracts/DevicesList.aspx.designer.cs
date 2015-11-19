@@ -157,6 +157,15 @@ namespace ServicePlaningWebUI.WebForms.Contracts {
         protected global::System.Web.UI.WebControls.LinkButton btnCheckedDelete;
         
         /// <summary>
+        /// changeAsBtnContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl changeAsBtnContainer;
+        
+        /// <summary>
         /// ddlNewServiceAdmin control.
         /// </summary>
         /// <remarks>

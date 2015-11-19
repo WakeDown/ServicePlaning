@@ -322,24 +322,24 @@ namespace ServicePlaningWebUI.WebForms.Service
                 //    li.Selected = true;
                 //}
 
-                foreach (RepeaterItem item in rtrDeviceList.Items)
-                {
-                    var chkIdC2d = item.FindControl("chkIdC2d") as CheckBox;
+                //foreach (RepeaterItem item in rtrDeviceList.Items)
+                //{
+                //    var chkIdC2d = item.FindControl("chkIdC2d") as CheckBox;
 
-                    if (chkIdC2d != null)
-                    {
-                        chkIdC2d.Checked = true;
-                        //if (String.IsNullOrEmpty(hfLstCheckedDeviceIds.Value))
-                        //{
-                        //    hfLstCheckedDeviceIds.Value += chkIdC2d.Attributes["Value"];
-                        //}
-                        //else
-                        //{
-                        //    hfLstCheckedDeviceIds.Value += String.Format(",{0}", chkIdC2d.Attributes["Value"]);
-                        //}
-                        //chkIdC2d_OnCheckedChanged(chkIdC2d, new EventArgs());
-                    }
-                }
+                //    if (chkIdC2d != null)
+                //    {
+                //        chkIdC2d.Checked = true;
+                //        //if (String.IsNullOrEmpty(hfLstCheckedDeviceIds.Value))
+                //        //{
+                //        //    hfLstCheckedDeviceIds.Value += chkIdC2d.Attributes["Value"];
+                //        //}
+                //        //else
+                //        //{
+                //        //    hfLstCheckedDeviceIds.Value += String.Format(",{0}", chkIdC2d.Attributes["Value"]);
+                //        //}
+                //        //chkIdC2d_OnCheckedChanged(chkIdC2d, new EventArgs());
+                //    }
+                //}
             }
 
             MainHelper.HfSetValue(ref hfIdContract2Devices, serviceClaim.IdContract2Devices);

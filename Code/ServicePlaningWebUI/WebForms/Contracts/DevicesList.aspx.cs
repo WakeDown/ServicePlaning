@@ -14,6 +14,15 @@ namespace ServicePlaningWebUI.WebForms.Contracts
 {
     public partial class DevicesList : BaseFilteredPage
     {
+        private string sysAdminRightGroup = ConfigurationManager.AppSettings["sysAdminRightGroup"];
+        private string sysAdminRightGroupVSKey = "sysAdminRightGroupVSKey";
+
+        public bool UserIsSysAdmin
+        {
+            get { return (bool)ViewState[sysAdminRightGroupVSKey]; }
+            set { ViewState[sysAdminRightGroupVSKey] = value; }
+        }
+
         protected override void FillFilterLinksDefaults()
         {
             //Если заполненный, занчит уже с умолчаниями
@@ -83,7 +92,7 @@ namespace ServicePlaningWebUI.WebForms.Contracts
         protected new void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
-
+            UserIsSysAdmin = Db.Db.Users.CheckUserRights(User.Login, sysAdminRightGroup);
             //////FormPartsDisplay();
 
             if (!IsPostBack)
@@ -98,6 +107,11 @@ namespace ServicePlaningWebUI.WebForms.Contracts
             }
 
             RegisterStartupScripts();
+        }
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            changeAsBtnContainer.Visible = UserIsSysAdmin;
         }
 
         private void FillLists()
