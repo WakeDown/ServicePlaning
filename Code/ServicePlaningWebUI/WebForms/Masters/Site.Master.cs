@@ -103,7 +103,7 @@ namespace ServicePlaningWebUI.WebForms.Masters
                     Response.Redirect(FriendlyUrl.Href("~/Reports/PlanExecute"));
                 }
 
-                if (!UserIsSysAdmin && !UserIsServiceTech && UserIsServiceManager && !Request.Path.Equals(FriendlyUrl.Href("~/Reports/PlanExecute")))
+                if (!UserIsSysAdmin && !UserIsServiceTech && UserIsServiceManager && !Request.Path.Equals(FriendlyUrl.Href("~/Reports/PlanExecute")) && !Request.Path.Equals(FriendlyUrl.Href("~/Reports/Counters")))
                 {
                     Response.Redirect(FriendlyUrl.Href("~/Reports/PlanExecute"));
                 }
@@ -148,6 +148,11 @@ namespace ServicePlaningWebUI.WebForms.Masters
             if (UserIsReport)
             {
                 liReports.Visible = liPayment.Visible = liPlanExec.Visible = liCounters.Visible = true;
+            }
+
+            if (UserIsServiceManager)
+            {
+                liReports.Visible = liPlanExec.Visible = liCounters.Visible = true;
             }
 
             if (UserIsServiceTech)

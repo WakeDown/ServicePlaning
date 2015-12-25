@@ -22,7 +22,7 @@ namespace ServicePlaningWebUI.Db
             using (var cmd = new SqlCommand(spName, conn)
             {
                 CommandType = CommandType.StoredProcedure,
-                CommandTimeout = 0
+                CommandTimeout = 100000
             })
             {
                 if (!string.IsNullOrEmpty(action) && !string.IsNullOrWhiteSpace(action))
@@ -46,7 +46,7 @@ namespace ServicePlaningWebUI.Db
             using (var cmd = new SqlCommand(spName, conn)
             {
                 CommandType = CommandType.StoredProcedure,
-                CommandTimeout = 0
+                CommandTimeout = 100000
             })
             {
                 if (!string.IsNullOrEmpty(action) && !string.IsNullOrWhiteSpace(action))
@@ -71,7 +71,7 @@ namespace ServicePlaningWebUI.Db
             using (var cmd = new SqlCommand(spName, conn)
             {
                 CommandType = CommandType.StoredProcedure,
-                CommandTimeout = 0
+                CommandTimeout = 100000
             })
             {
                 if (!string.IsNullOrEmpty(action) && !string.IsNullOrWhiteSpace(action))

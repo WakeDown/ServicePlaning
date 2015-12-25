@@ -23,6 +23,18 @@ namespace ServicePlaningWebUI.WebForms.Contracts
             set { ViewState[sysAdminRightGroupVSKey] = value; }
         }
 
+        
+        private string canChangeServAdmin = ConfigurationManager.AppSettings["ServicePlanCanChangeServiceAdmin"];
+        private string canChangeServAdminGroupVSKey = "ServicePlanCanChangeServiceAdmin";
+        /// <summary>
+        /// Может менять СА
+        /// </summary>
+        public bool UserCanChangeServAdmin
+        {
+            get { return (bool)ViewState[canChangeServAdminGroupVSKey]; }
+            set { ViewState[canChangeServAdminGroupVSKey] = value; }
+        }
+
         protected override void FillFilterLinksDefaults()
         {
             //Если заполненный, занчит уже с умолчаниями
@@ -93,6 +105,7 @@ namespace ServicePlaningWebUI.WebForms.Contracts
         {
             base.Page_Load(sender, e);
             UserIsSysAdmin = Db.Db.Users.CheckUserRights(User.Login, sysAdminRightGroup);
+            UserCanChangeServAdmin = Db.Db.Users.CheckUserRights(User.Login,groupSid: canChangeServAdmin);
             //////FormPartsDisplay();
 
             if (!IsPostBack)
@@ -111,7 +124,7 @@ namespace ServicePlaningWebUI.WebForms.Contracts
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            changeAsBtnContainer.Visible = UserIsSysAdmin;
+            changeAsBtnContainer.Visible = UserCanChangeServAdmin || UserIsSysAdmin;
         }
 
         private void FillLists()
@@ -502,6 +515,11 @@ namespace ServicePlaningWebUI.WebForms.Contracts
 
                 RedirectWithParams();
             }
+        }
+
+        protected void sdsContract2DevicesList_OnSelecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+            e.Command.CommandTimeout = 180;
         }
     }
 }

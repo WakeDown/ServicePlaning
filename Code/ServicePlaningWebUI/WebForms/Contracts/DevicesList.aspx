@@ -159,7 +159,7 @@
                 </FooterTemplate>
             </asp:Repeater>
         </table>
-        <asp:SqlDataSource ID="sdsContract2DevicesList" runat="server" ConnectionString="<%$ ConnectionStrings:unitConnectionString %>" SelectCommand="ui_service_planing" SelectCommandType="StoredProcedure" CancelSelectOnNullParameter="false" OnSelected="sdsContract2DevicesList_OnSelected">
+        <asp:SqlDataSource ID="sdsContract2DevicesList" runat="server" ConnectionString="<%$ ConnectionStrings:unitConnectionString %>" SelectCommand="ui_service_planing_2" SelectCommandType="StoredProcedure" CancelSelectOnNullParameter="false" OnSelected="sdsContract2DevicesList_OnSelected" OnSelecting="sdsContract2DevicesList_OnSelecting">
             <SelectParameters>
                 <asp:Parameter DefaultValue="getContract2DevicesList" Name="action" />
                 <asp:QueryStringParameter DefaultValue="" QueryStringField="id" Name="id_contract" ConvertEmptyStringToNull="true" />

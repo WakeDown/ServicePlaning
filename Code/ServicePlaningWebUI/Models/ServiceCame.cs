@@ -103,17 +103,17 @@ namespace ServicePlaningWebUI.Models
 
             DataTable dt = ExecuteQueryStoredProcedure(Srvpl.sp, "saveServiceCame", pId, pIdServiceClaim, pDescr, pDateCame, pCounter, pIdServiceEngeneer, pIdServiceActionType, pIdCreator, pCounterColour, pIdAktScan, pIsSysAdmin, pSerialNum, pNoPay, pProcessEnabled, pDeviceEnabled, pNeedZip, pNoCounter, pCounterUnavailable, pZipDescr, pDateWorkStart, pDateWorkEnd);
 
-            //Автоматическое создание инцедентов - временно ОТКЛЮЧЕНО 09.10.2015
-            //try
-            //{
-            //    string id = dt.Rows[0]["id"].ToString();
-            //    Uri uri = new Uri(String.Format("{0}/Claim/RemoteCreate4ZipClaim?idServiceCame={1}", DbModel.OdataServiceUri, id));
-            //    DbModel.GetApiClient().DownloadString(uri);
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception($"Инцидент для заявки на ЗИП НЕ создан. Акт СОХРАНЕН! {ex.Message}");
-            //}
+            //Автоматическое создание инцедентов
+            try
+            {
+                string id = dt.Rows[0]["id"].ToString();
+                Uri uri = new Uri(String.Format("{0}/Claim/RemoteCreate4ZipClaim?idServiceCame={1}", DbModel.OdataServiceUri, id));
+                DbModel.GetApiClient().DownloadString(uri);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Инцидент для заявки на ЗИП НЕ создан. Акт СОХРАНЕН! {ex.Message}");
+            }
         }
         
         public void Delete(int id)
