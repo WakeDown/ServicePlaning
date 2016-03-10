@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -106,8 +107,9 @@ namespace ServicePlaningWebUI.Models
             //Автоматическое создание инцедентов
             try
             {
+                string serviceUri = ConfigurationManager.AppSettings["ServiceClaimUri"];
                 string id = dt.Rows[0]["id"].ToString();
-                Uri uri = new Uri(String.Format("{0}/Claim/RemoteCreate4ZipClaim?idServiceCame={1}", DbModel.OdataServiceUri, id));
+                Uri uri = new Uri(String.Format("{0}/Claim/RemoteCreate4ZipClaim?idServiceCame={1}", serviceUri, id));
                 DbModel.GetApiClient().DownloadString(uri);
             }
             catch (Exception ex)
