@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -124,8 +125,11 @@ namespace ServicePlaningWebUI.WebForms.Service
         {
             ServiceCame serviceCame = GetFormData();
             string serialNum = MainHelper.TxtGetText(ref txtClaimSelection);
-            serviceCame.Save(UserIsSysAdmin, serialNum);
-            serviceCame.Save(UserIsSysAdmin);
+            IIdentity WinId = HttpContext.Current.User.Identity;
+            WindowsIdentity wi = (WindowsIdentity)WinId;
+            string sid = wi.User.Value;
+            serviceCame.Save(sid, UserIsSysAdmin, serialNum);
+            serviceCame.Save(sid, UserIsSysAdmin);
             ServiceClaim serviceClaim = new ServiceClaim(serviceCame.IdServiceClaim);
             string messageText = String.Format("Сохранение отметки об обслуживании заявки № {0} прошло успешно", serviceClaim.Number);
             ServerMessageDisplay(new[] { phServerMessage }, messageText);

@@ -39,7 +39,7 @@ namespace ServicePlaningWebUI.Models
             //WindowsIdentity wi = (WindowsIdentity)WinId;
             string sid = proxySid;//wi.User.Value;
             User user = Db.Db.Users.GetUserBySid(sid);
-
+            
             Id = user.Id;
             FullName = user.FullName;
             DisplayName = user.DisplayName;
@@ -65,7 +65,7 @@ namespace ServicePlaningWebUI.Models
                 //sid="S-1-5-21-1970802976-3466419101-4042325969-1648";//Турушкина
                 //sid = "S-1-5-21-1970802976-3466419101-4042325969-2275";//Поплеухина
                 User user = Db.Db.Users.GetUserBySid(sid);
-
+                AdSid = sid;
                 Id = user.Id;
                 FullName = user.FullName;
                 DisplayName = user.DisplayName;

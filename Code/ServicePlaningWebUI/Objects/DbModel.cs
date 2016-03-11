@@ -75,9 +75,17 @@ namespace ServicePlaningWebUI.Objects
             return response.StatusCode == HttpStatusCode.Created;
         }
 
-        public static WebClient GetApiClient(string contentType = "application/json")
+        public static WebClient GetApiClient(string baseUrl, string contentType = "application/json")
         {
-            var baseUri = new Uri(OdataServiceUri);
+            //Uri baseUri;
+            //if (String.IsNullOrEmpty(baseUrl))
+            //{
+            //    baseUri = new Uri(OdataServiceUri);
+            //}
+            //else
+            //{
+              var  baseUri = new Uri(baseUrl);
+            //}
             var clientHandler = new WebRequestHandler();
             CredentialCache cc = new CredentialCache();
             cc.Add(baseUri, "NTLM", CredentialCache.DefaultNetworkCredentials);
