@@ -109,14 +109,13 @@ namespace ServicePlaningWebUI.Models
                 string serviceUri = ConfigurationManager.AppSettings["ServiceClaimUri"];
                 string id = dt.Rows[0]["id"].ToString();
                 Uri uri = new Uri(String.Format("{0}/Claim/RemoteCreate4ZipClaim?idServiceCame={1}&creatorSid={2}", serviceUri, id, creatorSid));
-            string result =null;
             try
             {
-                result =  DbModel.GetApiClient(serviceUri).DownloadString(uri);
+                DbModel.GetApiClient(serviceUri).UploadData(uri, "PUT", new byte[0]);
             }
             catch (Exception ex)
             {
-                throw new Exception($"Инцидент для заявки на ЗИП НЕ создан. Акт СОХРАНЕН! {result} {ex.Message}");
+                throw new Exception($"Инцидент для заявки на ЗИП НЕ создан. Акт СОХРАНЕН! {ex.Message}");
             }
         }
         

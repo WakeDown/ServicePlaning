@@ -311,19 +311,17 @@
             }, 0);
         });
     </script>--%>
+             <%--   <script type="text/javascript">
+            $('#cphMainContent_cphFormBody_btnSaveAndAddNew').click(function () {
+                $(this).removeClass('btn-primary');
+                $(this).addClass('btn-danger');
+                $(this).prop('disabled',true);
+                alert(1);
+            });
+    </script>--%>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-    <%--<script type="text/javascript">
-        $(document).ready(function () {
-            $("[timemask='1']").mask("99:99");
-        });
-        $(document).on('submit', 'form', function () {
-            var button = $(this).find("[type='submit']");
-            setTimeout(function () {
-                button.prop('disabled', true);
-            }, 0);
-        });
-    </script>--%>
+    
 </asp:Content>
 

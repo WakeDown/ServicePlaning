@@ -16,6 +16,9 @@ namespace ServicePlaningWebUI.Models
         public string Name { get; set; }
         public string Locality { get; set; }
         public string Coord { get; set; }
+        public int? Sla1 { get; set; }
+        public int? Sla2 { get; set; }
+        public int? Sla3 { get; set; }
 
         public City()
         {
@@ -57,8 +60,11 @@ namespace ServicePlaningWebUI.Models
             SqlParameter pArea = new SqlParameter() { ParameterName = "area", Value = Area, DbType = DbType.AnsiString };
             SqlParameter pLocality = new SqlParameter() { ParameterName = "locality", Value = Locality, DbType = DbType.AnsiString };
             SqlParameter pCoord = new SqlParameter() { ParameterName = "coord", Value = Coord, DbType = DbType.AnsiString };
+            SqlParameter pSla1 = new SqlParameter() { ParameterName = "sla_1", Value = Sla1, DbType = DbType.Int32 };
+            SqlParameter pSla2 = new SqlParameter() { ParameterName = "sla_2", Value = Sla2, DbType = DbType.Int32 };
+            SqlParameter pSla3 = new SqlParameter() { ParameterName = "sla_3", Value = Sla3, DbType = DbType.Int32 };
 
-            DataTable dt = ExecuteQueryStoredProcedure(Unit.sp, "saveCity", pId, pRegion, pArea, pName, pLocality, pCoord);
+            DataTable dt = ExecuteQueryStoredProcedure(Unit.sp, "saveCity", pId, pRegion, pArea, pName, pLocality, pCoord, pSla1, pSla2, pSla3);
         }
 
         public void Delete(int id)

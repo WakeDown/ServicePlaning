@@ -52,6 +52,27 @@
                 </span>--%>
             </div>
         </div>
+        <div class="form-group">
+            <label for='<%=txtSla_1.ClientID %>' class="col-sm-2 control-label">SLA 1</label>
+            <div class="col-sm-10 val-control-container">
+                <asp:TextBox ID="txtSla_1" runat="server" class="form-control" MaxLength="50"></asp:TextBox>
+                <%--<span class="help-block">
+                    <asp:RequiredFieldValidator ID="rfvTxtModel" runat="server" ErrorMessage="Заполните поле &laquo;Название города&raquo;" ControlToValidate="txtName" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
+                </span>--%>
+            </div>
+        </div>
+        <%--<div class="form-group">
+            <label for='<%=txtSla_2.ClientID %>' class="col-sm-2 control-label">SLA 2</label>
+            <div class="col-sm-10 val-control-container">
+                <asp:TextBox ID="txtSla_2" runat="server" class="form-control" MaxLength="50"></asp:TextBox>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='<%=txtSla_3.ClientID %>' class="col-sm-2 control-label">SLA 2</label>
+            <div class="col-sm-10 val-control-container">
+                <asp:TextBox ID="txtSla_3" runat="server" class="form-control" MaxLength="50"></asp:TextBox>
+            </div>
+        </div>--%>
         <div class="col-sm-offset-2 col-sm-10">
             <asp:PlaceHolder ID="phServerMessage" runat="server"></asp:PlaceHolder>
         </div>
@@ -115,6 +136,7 @@
             <asp:BoundField DataField="name" SortExpression="name" HeaderText="Город" HeaderStyle-CssClass="sorted-header" />
             <asp:BoundField DataField="locality" SortExpression="locality" HeaderText="Населенный пункт" HeaderStyle-CssClass="sorted-header" />
             <asp:BoundField DataField="coord" SortExpression="coord" HeaderText="Георг. координаты" HeaderStyle-CssClass="sorted-header" />
+            <asp:BoundField DataField="sla_1" SortExpression="sla_1" HeaderText="SLA 1" HeaderStyle-CssClass="sorted-header" />
             <asp:TemplateField ItemStyle-CssClass="min-width">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" OnClick="btnDelete_OnClick" CommandArgument='<%#Eval("id_city") %>' OnClientClick="return DeleteConfirm('город')" CssClass="btn btn-link" data-toggle="tooltip" title="удалить"><i class="fa fa-trash-o fa-lg"></i></asp:LinkButton>

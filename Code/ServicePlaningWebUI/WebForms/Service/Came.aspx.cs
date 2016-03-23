@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Security.Principal;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -97,6 +98,7 @@ namespace ServicePlaningWebUI.WebForms.Service
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 if (Id > 0)
@@ -106,7 +108,7 @@ namespace ServicePlaningWebUI.WebForms.Service
                 FormDisplay();
                 txtClaimSelection.Focus();
             }
-            btnSaveAndAddNew.Attributes.Add("onClick", "this.innerText='Идет сохранение...';");
+            btnSaveAndAddNew.Attributes.Add("onClick", "this.innerText='Идет сохранение...';$(this).removeClass('btn-primary');$(this).addClass('btn-danger');$(this).addClass('disabled');");
             //
         }
 
