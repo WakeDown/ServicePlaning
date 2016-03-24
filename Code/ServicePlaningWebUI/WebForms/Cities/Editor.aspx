@@ -53,12 +53,12 @@
             </div>
         </div>
         <div class="form-group">
-            <label for='<%=txtSla_1.ClientID %>' class="col-sm-2 control-label">SLA 1</label>
+            <label for='<%=txtSla_1.ClientID %>' class="col-sm-2 control-label">SLA 1 (в часах)</label>
             <div class="col-sm-10 val-control-container">
                 <asp:TextBox ID="txtSla_1" runat="server" class="form-control" MaxLength="50"></asp:TextBox>
-                <%--<span class="help-block">
-                    <asp:RequiredFieldValidator ID="rfvTxtModel" runat="server" ErrorMessage="Заполните поле &laquo;Название города&raquo;" ControlToValidate="txtName" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
-                </span>--%>
+                <span class="help-block">
+                    <asp:RequiredFieldValidator ID="rfvtxtSla_1" runat="server" ErrorMessage="Заполните поле &laquo;SLA 1&raquo;" ControlToValidate="txtSla_1" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
+                </span>
             </div>
         </div>
         <%--<div class="form-group">

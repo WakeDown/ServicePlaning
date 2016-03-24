@@ -67,6 +67,15 @@ namespace ServicePlaningWebUI.WebForms.Cities {
         protected global::System.Web.UI.WebControls.TextBox txtSla_1;
         
         /// <summary>
+        /// rfvtxtSla_1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtSla_1;
+        
+        /// <summary>
         /// phServerMessage control.
         /// </summary>
         /// <remarks>
