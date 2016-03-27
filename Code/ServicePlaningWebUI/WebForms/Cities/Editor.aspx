@@ -55,24 +55,49 @@
         <div class="form-group">
             <label for='<%=txtSla_1.ClientID %>' class="col-sm-2 control-label">SLA 1 (в часах)</label>
             <div class="col-sm-10 val-control-container">
-                <asp:TextBox ID="txtSla_1" runat="server" class="form-control" MaxLength="50"></asp:TextBox>
+                <asp:TextBox ID="txtSla_1" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
                 <span class="help-block">
                     <asp:RequiredFieldValidator ID="rfvtxtSla_1" runat="server" ErrorMessage="Заполните поле &laquo;SLA 1&raquo;" ControlToValidate="txtSla_1" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
                 </span>
             </div>
         </div>
-        <%--<div class="form-group">
-            <label for='<%=txtSla_2.ClientID %>' class="col-sm-2 control-label">SLA 2</label>
+        <div class="form-group">
+            <label for='<%=txtSla_2.ClientID %>' class="col-sm-2 control-label">SLA 2 (в часах)</label>
             <div class="col-sm-10 val-control-container">
-                <asp:TextBox ID="txtSla_2" runat="server" class="form-control" MaxLength="50"></asp:TextBox>
+                <asp:TextBox ID="txtSla_2" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
+                <span class="help-block">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Заполните поле &laquo;SLA 2&raquo;" ControlToValidate="txtSla_2" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
+                </span>
             </div>
         </div>
         <div class="form-group">
-            <label for='<%=txtSla_3.ClientID %>' class="col-sm-2 control-label">SLA 2</label>
+            <label for='<%=txtSla_3.ClientID %>' class="col-sm-2 control-label">SLA 3 (в часах)</label>
             <div class="col-sm-10 val-control-container">
-                <asp:TextBox ID="txtSla_3" runat="server" class="form-control" MaxLength="50"></asp:TextBox>
+                <asp:TextBox ID="txtSla_3" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
+                <span class="help-block">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Заполните поле &laquo;SLA 3&raquo;" ControlToValidate="txtSla_3" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
+                </span>
             </div>
-        </div>--%>
+        </div>
+        <div class="form-group">
+            <label for='<%=txtSla_4.ClientID %>' class="col-sm-2 control-label">SLA 4 (в часах)</label>
+            <div class="col-sm-10 val-control-container">
+                <asp:TextBox ID="txtSla_4" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
+                <span class="help-block">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Заполните поле &laquo;SLA 4&raquo;" ControlToValidate="txtSla_4" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='<%=txtOffset.ClientID %>' class="col-sm-2 control-label">Смещение GMT</label>
+            <div class="col-sm-10 val-control-container">
+                <asp:TextBox ID="txtOffset" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
+                <small>Например, +5 или -2</small>
+                <span class="help-block">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Заполните поле &laquo;Смещение GMT&raquo;" ControlToValidate="txtOffset" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
+                </span>
+            </div>
+        </div>
         <div class="col-sm-offset-2 col-sm-10">
             <asp:PlaceHolder ID="phServerMessage" runat="server"></asp:PlaceHolder>
         </div>
@@ -137,6 +162,10 @@
             <asp:BoundField DataField="locality" SortExpression="locality" HeaderText="Населенный пункт" HeaderStyle-CssClass="sorted-header" />
             <asp:BoundField DataField="coord" SortExpression="coord" HeaderText="Георг. координаты" HeaderStyle-CssClass="sorted-header" />
             <asp:BoundField DataField="sla_1" SortExpression="sla_1" HeaderText="SLA 1" HeaderStyle-CssClass="sorted-header" />
+            <asp:BoundField DataField="sla_2" SortExpression="sla_2" HeaderText="SLA 2" HeaderStyle-CssClass="sorted-header" />
+            <asp:BoundField DataField="sla_3" SortExpression="sla_3" HeaderText="SLA 3" HeaderStyle-CssClass="sorted-header" />
+            <asp:BoundField DataField="sla_4" SortExpression="sla_4" HeaderText="SLA 4" HeaderStyle-CssClass="sorted-header" />
+            <asp:BoundField DataField="datetime_offset" SortExpression="datetime_offset" HeaderText="Смещение GMT" HeaderStyle-CssClass="sorted-header" />
             <asp:TemplateField ItemStyle-CssClass="min-width">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" OnClick="btnDelete_OnClick" CommandArgument='<%#Eval("id_city") %>' OnClientClick="return DeleteConfirm('город')" CssClass="btn btn-link" data-toggle="tooltip" title="удалить"><i class="fa fa-trash-o fa-lg"></i></asp:LinkButton>

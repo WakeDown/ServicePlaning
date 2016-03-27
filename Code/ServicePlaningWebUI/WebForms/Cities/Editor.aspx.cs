@@ -124,8 +124,10 @@ namespace ServicePlaningWebUI.WebForms.Cities
             city.Locality = MainHelper.TxtGetText(ref txtLocality);
             city.Coord = MainHelper.TxtGetText(ref txtCoord);
             city.Sla1 = MainHelper.TxtGetTextInt32(ref txtSla_1, true);
-            //city.Sla2 = MainHelper.TxtGetTextInt32(ref txtSla_2, true);
-            //city.Sla3 = MainHelper.TxtGetTextInt32(ref txtSla_3, true);
+            city.Sla2 = MainHelper.TxtGetTextInt32(ref txtSla_2, true);
+            city.Sla3 = MainHelper.TxtGetTextInt32(ref txtSla_3, true);
+            city.Sla4 = MainHelper.TxtGetTextInt32(ref txtSla_4, true);
+            city.Offset = MainHelper.TxtGetText(ref txtOffset);
 
             return city;
         }
@@ -139,8 +141,10 @@ namespace ServicePlaningWebUI.WebForms.Cities
             MainHelper.TxtSetText(ref txtLocality, city.Locality);
             MainHelper.TxtSetText(ref txtCoord, city.Coord);
             MainHelper.TxtSetText(ref txtSla_1, city.Sla1);
-            //MainHelper.TxtSetText(ref txtSla_2, city.Sla2);
-            //MainHelper.TxtSetText(ref txtSla_3, city.Sla3);
+            MainHelper.TxtSetText(ref txtSla_2, city.Sla2);
+            MainHelper.TxtSetText(ref txtSla_3, city.Sla3);
+            MainHelper.TxtSetText(ref txtSla_4, city.Sla4);
+            MainHelper.TxtSetText(ref txtOffset, city.Offset);
         }
 
         //======

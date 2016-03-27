@@ -19,6 +19,8 @@ namespace ServicePlaningWebUI.Models
         public int? Sla1 { get; set; }
         public int? Sla2 { get; set; }
         public int? Sla3 { get; set; }
+        public int? Sla4 { get; set; }
+        public string Offset { get; set; }
 
         public City()
         {
@@ -49,6 +51,11 @@ namespace ServicePlaningWebUI.Models
                 Name = dr["name"].ToString();
                 Locality = dr["locality"].ToString();
                 Coord = dr["coord"].ToString();
+                //Sla1 = dr["sla_1"] != DBNull ? Convert.ToInt32(dr["sla_1"]) : null;
+                //Sla2 = (int)dr["sla_2"].ToString();
+                //Sla3 = (int)dr["sla_3"].ToString();
+                //Sla4 = (int)dr["sla_4"].ToString();
+                //Offset = dr["datetime_offset"].ToString();
             }
         }
 
@@ -63,8 +70,10 @@ namespace ServicePlaningWebUI.Models
             SqlParameter pSla1 = new SqlParameter() { ParameterName = "sla_1", Value = Sla1, DbType = DbType.Int32 };
             SqlParameter pSla2 = new SqlParameter() { ParameterName = "sla_2", Value = Sla2, DbType = DbType.Int32 };
             SqlParameter pSla3 = new SqlParameter() { ParameterName = "sla_3", Value = Sla3, DbType = DbType.Int32 };
+            SqlParameter pSla4 = new SqlParameter() { ParameterName = "sla_4", Value = Sla4, DbType = DbType.Int32 };
+            SqlParameter pOffset = new SqlParameter() { ParameterName = "datetime_offset", Value = Offset.Trim(), DbType = DbType.AnsiString };
 
-            DataTable dt = ExecuteQueryStoredProcedure(Unit.sp, "saveCity", pId, pRegion, pArea, pName, pLocality, pCoord, pSla1, pSla2, pSla3);
+            DataTable dt = ExecuteQueryStoredProcedure(Unit.sp, "saveCity", pId, pRegion, pArea, pName, pLocality, pCoord, pSla1, pSla2, pSla3, pSla4, pOffset);
         }
 
         public void Delete(int id)
