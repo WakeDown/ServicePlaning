@@ -92,7 +92,7 @@
             <label for='<%=txtOffset.ClientID %>' class="col-sm-2 control-label">Смещение GMT</label>
             <div class="col-sm-10 val-control-container">
                 <asp:TextBox ID="txtOffset" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
-                <small>Например, +5 или -2</small>
+                <small>Например, +05:00 или -02:30 иначе SLA в АИС будет сформирован некорректно и за вами придут!</small>
                 <span class="help-block">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Заполните поле &laquo;Смещение GMT&raquo;" ControlToValidate="txtOffset" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
                 </span>
