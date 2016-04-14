@@ -47,9 +47,10 @@
             <label for='<%=txtCoord.ClientID %>' class="col-sm-2 control-label">Географические координаты</label>
             <div class="col-sm-10 val-control-container">
                 <asp:TextBox ID="txtCoord" runat="server" class="form-control" MaxLength="50"></asp:TextBox>
-                <%--<span class="help-block">
-                    <asp:RequiredFieldValidator ID="rfvTxtModel" runat="server" ErrorMessage="Заполните поле &laquo;Название города&raquo;" ControlToValidate="txtName" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
-                </span>--%>
+                <span class="help-block">
+                    <asp:RequiredFieldValidator ID="rfvTxtModel" runat="server" ErrorMessage="Заполните поле &laquo;Географические координаты&raquo;" ControlToValidate="txtCoord" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Координаты необходимо ввести в формате 56.634407,47.899878 или 56.634407,-47.899878" CssClass="text-danger" ControlToValidate="txtCoord" SetFocusOnError="True" Display="Dynamic" ValidationGroup="vgForm" ValidationExpression="^-?\d{1,3}[.]\d{6},-?\d{1,3}[.]\d{6}$"></asp:RegularExpressionValidator>
+                </span>
             </div>
         </div>
         <div class="form-group">
@@ -91,10 +92,11 @@
         <div class="form-group">
             <label for='<%=txtOffset.ClientID %>' class="col-sm-2 control-label">Смещение GMT</label>
             <div class="col-sm-10 val-control-container">
-                <asp:TextBox ID="txtOffset" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
+                <asp:TextBox ID="txtOffset" runat="server" class="form-control" MaxLength="6"></asp:TextBox>
                 <small>Например, +05:00 или -02:30 иначе SLA в АИС будет сформирован некорректно и за вами придут!</small>
                 <span class="help-block">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Заполните поле &laquo;Смещение GMT&raquo;" ControlToValidate="txtOffset" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="GMT необходимо ввести в формате +05:00 или -02:30" CssClass="text-danger" ControlToValidate="txtOffset" SetFocusOnError="True" Display="Dynamic" ValidationGroup="vgForm" ValidationExpression="^[+-]\d\d:\d\d$"></asp:RegularExpressionValidator>
                 </span>
             </div>
         </div>
@@ -109,6 +111,13 @@
             </div>
         </div>
     </div>
+    <script>
+        $(function () {
+            
+<%--            $('#<%=txtCoord.ClientID%>').mask('1', { 'translation': { 1: { pattern: /-?\d{1,3}[.]\d{6},\d{1,3}[.]\d{6}/ } } });--%>
+        $('#<%=txtOffset.ClientID%>').mask('100:00', { 'translation': { 1: { pattern: /[+-]/ } } });
+    })
+</script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphFilterBody" runat="server">
     <div class="form-horizontal val-form" role="form">
@@ -183,3 +192,4 @@
         </SelectParameters>
     </asp:SqlDataSource>
 </asp:Content>
+
