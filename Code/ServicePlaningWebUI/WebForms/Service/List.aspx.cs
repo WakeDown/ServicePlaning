@@ -115,7 +115,7 @@ namespace ServicePlaningWebUI.WebForms.Service
         private void FillFilterLists()
         {
             MainHelper.DdlFill(ref ddlServiceAdmin, Db.Db.Users.GetUsersSelectionList(serviceAdminRightGroup), true, MainHelper.ListFirstItemType.SelectAll);
-            MainHelper.DdlFill(ref ddlDevice, Db.Db.Srvpl.GetDeviceSelectionList(), true, MainHelper.ListFirstItemType.SelectAll);
+            //MainHelper.DdlFill(ref ddlDevice, Db.Db.Srvpl.GetDeviceSelectionList(), true, MainHelper.ListFirstItemType.SelectAll);
             MainHelper.DdlFill(ref ddlContractor, Db.Db.Srvpl.GetContractorShortSelectionList(), true, MainHelper.ListFirstItemType.SelectAll);
             MainHelper.DdlFill(ref ddlServiceTypes, Db.Db.Srvpl.GetServiceTypeSelectionList(), true, MainHelper.ListFirstItemType.SelectAll);
             MainHelper.DdlFill(ref ddlServiceActionTypes, Db.Db.Srvpl.GetServiceActionTypeSelectionList(), true, MainHelper.ListFirstItemType.SelectAll);
@@ -161,15 +161,17 @@ namespace ServicePlaningWebUI.WebForms.Service
             string script = string.Empty;
 
             //<Фильтрация списка по вводимому тексту>
-            script = String.Format(@"$(function() {{$('#{0}').filterByText($('#{1}'), true);}});", ddlDevice.ClientID, txtDeviceSelection.ClientID);
+            //script = String.Format(@"$(function() {{$('#{0}').filterByText($('#{1}'), true);}});", ddlDevice.ClientID, txtDeviceSelection.ClientID);
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "filterDeviceListBySerialNum", script, true);
+            //ScriptManager.RegisterStartupScript(this, GetType(), "filterDeviceListBySerialNum", script, true);
 
             //script = String.Format(@"$(function() {{$('#{0}').filterByText($('#{1}'), true);}});", ddlContractor.ClientID, txtContractorSelection.ClientID);
 
             //ScriptManager.RegisterStartupScript(this, GetType(), "filterDeviceListBySerialNum", script, true);
             //</Фильтрация списка>
         }
+
+        
 
         //protected void tblList_RowDataBound(object sender, GridViewRowEventArgs e)
         //{
@@ -237,5 +239,20 @@ namespace ServicePlaningWebUI.WebForms.Service
             MainHelper.DdlFill(ref ddlContractor, Db.Db.Unit.GetContractorSelectionList(text));
             ddlContractor.Focus();
         }
+
+        protected void txtDeviceSelection_OnTextChanged(object sender, EventArgs e)
+        {
+            var name = txtDeviceSelection.Text;
+            var list = Db.Db.Srvpl.GetDeviceSelectionListPair(name);
+
+            MainHelper.DdlFill(ref ddlDevice, list, true, MainHelper.ListFirstItemType.SelectAll, valueField: "Key", textField:"Value");
+        }
+
+        //[System.Web.Services.WebMethod]
+        //public static IEnumerable<KeyValuePair<int, string>> getDiveceSelectionList()
+        //{
+        //    var list = Db.Db.Srvpl.GetDeviceSelectionListPair();
+        //    return list;
+        //}
     }
 }

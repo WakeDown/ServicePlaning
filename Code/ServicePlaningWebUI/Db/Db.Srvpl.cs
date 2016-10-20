@@ -171,6 +171,22 @@ namespace ServicePlaningWebUI.Db
                 return GetSelectionList("getDeviceSelectionList");
             }
 
+            public static IEnumerable<KeyValuePair<int, string>> GetDeviceSelectionListPair(string nameSearch=null)
+            {
+                var list = GetDeviceSelectionList();
+                var result = new List<KeyValuePair<int, string>>();
+                for (int i = 0; i < list.Rows.Count; i++)
+                {
+                    var id = Convert.ToInt32(list.Rows[i]["id"]);
+                    var name = list.Rows[i]["name"].ToString();
+                    if (String.IsNullOrEmpty(nameSearch) || (!String.IsNullOrEmpty(nameSearch) && !String.IsNullOrEmpty(name) && name.ToLower().Contains(nameSearch.ToLower())))
+                    {
+                        result.Add(new KeyValuePair<int, string>(id, name));
+                    }
+                }
+                return result;
+            }
+
 
             /// <summary>
             /// FilteredSelectionList

@@ -181,6 +181,42 @@
                 </span>
             </div>
         </div>
+        <div class="form-group">
+            <label for='<%=txtSla1.ClientID %>' class="col-sm-2 control-label">SLA 1 (в часах)</label>
+            <div class="col-sm-10">
+                <asp:TextBox ID="txtSla1" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
+                <span class="help-block">
+<asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Введите число" CssClass="text-danger" ControlToValidate="txtSla1" Type="Integer" Operator="DataTypeCheck" Display="Dynamic" SetFocusOnError="True" ValidationGroup="vgForm"></asp:CompareValidator>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='<%=txtSla2.ClientID %>' class="col-sm-2 control-label">SLA 2 (в часах)</label>
+            <div class="col-sm-10">
+                <asp:TextBox ID="txtSla2" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
+                <span class="help-block">
+<asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Введите число" CssClass="text-danger" ControlToValidate="txtSla2" Type="Integer" Operator="DataTypeCheck" Display="Dynamic" SetFocusOnError="True" ValidationGroup="vgForm"></asp:CompareValidator>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='<%=txtSla3.ClientID %>' class="col-sm-2 control-label">SLA 3 (в часах)</label>
+            <div class="col-sm-10">
+                <asp:TextBox ID="txtSla3" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
+                <span class="help-block">
+<asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="Введите число" CssClass="text-danger" ControlToValidate="txtSla3" Type="Integer" Operator="DataTypeCheck" Display="Dynamic" SetFocusOnError="True" ValidationGroup="vgForm"></asp:CompareValidator>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='<%=txtSla4.ClientID %>' class="col-sm-2 control-label">SLA 4 (в часах)</label>
+            <div class="col-sm-10">
+                <asp:TextBox ID="txtSla4" runat="server" class="form-control" MaxLength="5"></asp:TextBox>
+                <span class="help-block">
+<asp:CompareValidator ID="CompareValidator4" runat="server" ErrorMessage="Введите число" CssClass="text-danger" ControlToValidate="txtSla4" Type="Integer" Operator="DataTypeCheck" Display="Dynamic" SetFocusOnError="True" ValidationGroup="vgForm"></asp:CompareValidator>
+                </span>
+            </div>
+        </div>
         <div class="col-sm-offset-2 col-sm-10">
             <asp:PlaceHolder ID="phServerMessage" runat="server"></asp:PlaceHolder>
         </div>

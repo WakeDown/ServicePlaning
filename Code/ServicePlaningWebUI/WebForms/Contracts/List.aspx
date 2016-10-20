@@ -168,6 +168,10 @@
             </asp:TemplateField>--%>
             <asp:BoundField DataField="number" SortExpression="number" HeaderText="№ договора" HeaderStyle-CssClass="sorted-header" />
             <asp:BoundField DataField="contract_type" SortExpression="contract_type" HeaderText="Тип договора" HeaderStyle-CssClass="sorted-header" />
+            <asp:BoundField DataField="sla_1_hours" SortExpression="sla_1_hours" HeaderText="SLA 1" HeaderStyle-CssClass="sorted-header" />
+            <asp:BoundField DataField="sla_2_hours" SortExpression="sla_2_hours" HeaderText="SLA 2" HeaderStyle-CssClass="sorted-header" />
+            <asp:BoundField DataField="sla_3_hours" SortExpression="sla_3_hours" HeaderText="SLA 3" HeaderStyle-CssClass="sorted-header" />
+            <asp:BoundField DataField="sla_4_hours" SortExpression="sla_4_hours" HeaderText="SLA 4" HeaderStyle-CssClass="sorted-header" />
 <%--            <asp:BoundField DataField="contractor" SortExpression="contractor" HeaderText="Контрагент" HeaderStyle-CssClass="sorted-header" />--%>
             <asp:TemplateField HeaderText="Контрагент">
                 <ItemTemplate>

@@ -267,6 +267,10 @@ namespace ServicePlaningWebUI.WebForms.Contracts
             contract.Note = MainHelper.TxtGetText(ref txtNote);
             contract.HandlingDevices = MainHelper.TxtGetTextInt32(ref txtHandlingDevices, true);
             contract.ClientSdNumRequired = MainHelper.RblGetValueBool(ref rblClientSdNumRequired, true);
+            contract.Sla1 = MainHelper.TxtGetTextInt32(ref txtSla1, true);
+            contract.Sla2 = MainHelper.TxtGetTextInt32(ref txtSla2, true);
+            contract.Sla3 = MainHelper.TxtGetTextInt32(ref txtSla3, true);
+            contract.Sla4 = MainHelper.TxtGetTextInt32(ref txtSla4, true);
 
             return contract;
         }

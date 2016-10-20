@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Обслуживание - список" Language="C#" MasterPageFile="~/WebForms/Masters/List.master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="ServicePlaningWebUI.WebForms.Service.List" %>
+<%@ Import Namespace="ServicePlaningWebUI.Db" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphControlButtons" runat="server">
     <a class="btn btn-primary btn-lg" type="button" href='<%= GetRedirectUrlWithParams(String.Empty, false, FormUrl) %>'>новый выезд</a>
@@ -14,7 +15,7 @@
             <div class="col-sm-10">
                 <div class="input-group full-width">
                     <span class="input-group-btn width-20">
-                        <asp:TextBox ID="txtDeviceSelection" runat="server" class="form-control input-sm width-20" placeholder="поиск" MaxLength="33"></asp:TextBox>
+                        <asp:TextBox ID="txtDeviceSelection" runat="server" class="form-control input-sm width-20" placeholder="поиск" MaxLength="33" OnTextChanged="txtDeviceSelection_OnTextChanged" AutoPostBack="True"></asp:TextBox>
                     </span>
                     <asp:DropDownList ID="ddlDevice" runat="server" CssClass="form-control input-sm">
                     </asp:DropDownList>
@@ -219,7 +220,7 @@
             <asp:BoundField DataField="service_engeneer" SortExpression="service_engeneer" HeaderText="ФИО инженера" HeaderStyle-CssClass="sorted-header" ItemStyle-CssClass="nowrap" />
             <asp:TemplateField ItemStyle-CssClass="min-width">
                 <ItemTemplate>
-                    <asp:LinkButton ID="btnDelete" runat="server" OnClick="btnDelete_OnClick" CommandArgument='<%#Eval("id_service_claim") %>' OnClientClick="return DeleteConfirm('заявку')" CssClass="btn btn-link" data-toggle="tooltip" title="удалить" Visible='<%#UserIsSysAdmin || UserIsServiceTech %>'><i class="fa fa-trash-o fa-lg"></i></asp:LinkButton>
+                    <asp:LinkButton ID="btnDelete" runat="server" OnClick="btnDelete_OnClick" CommandArgument='<%#Eval("id_service_claim") %>' OnClientClick="return DeleteConfirm('заявку')" CssClass="btn btn-link" data-toggle="tooltip" title="удалить" Visible='<%#UserIsSysAdmin || UserIsServiceTech || UserIsServiceAdmin %>'><i class="fa fa-trash-o fa-lg"></i></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
@@ -245,4 +246,26 @@
             <asp:QueryStringParameter QueryStringField="mth" Name="date_month" DefaultValue="" ConvertEmptyStringToNull="True" DbType="Date" />
         </SelectParameters>
     </asp:SqlDataSource>
+    <script>
+        $(function() {
+           <%--$('#cphMainContent_cphFilterBody_txtDeviceSelection').keypress(function (e) {
+                if (e.keyCode != 13) return;
+                $.ajax({
+                    method:'POST',
+                    url: '<%= ResolveUrl("~/WebForms/Service/List.aspx/getDiveceSelectionList") %>',
+                    data: '{ }',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (data) {
+                        var $select = $('#cphMainContent_cphFilterBody_ddlDevice');
+                        $select.find('option').remove();
+                        for (var i = 0; i < data.length; i++) {
+                            var item = data[i];
+                            $select.append('<option value="' + item.Key+ '">' + item.Value + '</option>');
+                        }
+                    }
+                });
+            });--%>
+        })
+    </script>
 </asp:Content>

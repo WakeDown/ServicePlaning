@@ -28,6 +28,10 @@ namespace ServicePlaningWebUI.Models
         public bool PeriodReduction;
         public int? HandlingDevices;
         public bool? ClientSdNumRequired;
+        public int? Sla1;
+        public int? Sla2;
+        public int? Sla3;
+        public int? Sla4;
 
         public Contract()
         {
@@ -92,8 +96,12 @@ namespace ServicePlaningWebUI.Models
             SqlParameter pIdPriceDiscount = new SqlParameter() { ParameterName = "id_price_discount", Value = IdPriceDiscount, DbType = DbType.Int32 };
             SqlParameter pHandlingDevices = new SqlParameter() { ParameterName = "handling_devices", Value = HandlingDevices, DbType = DbType.Int32 };
             SqlParameter pClientSdNumRequired = new SqlParameter() { ParameterName = "client_sd_num_required", Value = ClientSdNumRequired, SqlDbType = SqlDbType.Bit };
+            SqlParameter pSla1 = new SqlParameter() { ParameterName = "sla_1_hours", Value = Sla1, DbType = DbType.Int32 };
+            SqlParameter pSla2 = new SqlParameter() { ParameterName = "sla_2_hours", Value = Sla2, DbType = DbType.Int32 };
+            SqlParameter pSla3 = new SqlParameter() { ParameterName = "sla_3_hours", Value = Sla3, DbType = DbType.Int32 };
+            SqlParameter pSla4 = new SqlParameter() { ParameterName = "sla_4_hours", Value = Sla4, DbType = DbType.Int32 };
 
-            DataTable dt = ExecuteQueryStoredProcedure(Srvpl.sp, "saveContract", pId, pNumber, pPrice, pIdServiceType, pIdContractType, pIdContractor, pIdContractStatus, pIdManager, pDateBegin, pDateEnd, pIdCreator, pIdZipState, pNote, pIdContractProlong, pIdPriceDiscount, pHandlingDevices, pClientSdNumRequired);
+            DataTable dt = ExecuteQueryStoredProcedure(Srvpl.sp, "saveContract", pId, pNumber, pPrice, pIdServiceType, pIdContractType, pIdContractor, pIdContractStatus, pIdManager, pDateBegin, pDateEnd, pIdCreator, pIdZipState, pNote, pIdContractProlong, pIdPriceDiscount, pHandlingDevices, pClientSdNumRequired, pSla1, pSla2, pSla3, pSla4);
 
 
             //TODO: Перенести исключения на уровень БД!!!

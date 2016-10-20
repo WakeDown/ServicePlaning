@@ -95,5 +95,19 @@ namespace ServicePlaningWebUI.Objects
             var client = new WebClient() { BaseAddress = baseUri.ToString(), Credentials = cc };
             return client;
         }
+
+        public static WebClient GetApiClientAnonymous(string baseUrl, string contentType = "application/json")
+        {
+            
+            var baseUri = new Uri(baseUrl);
+            var clientHandler = new WebRequestHandler();
+            //CredentialCache cc = new CredentialCache();
+            //cc.Add(baseUri, "NTLM", CredentialCache.DefaultNetworkCredentials);
+            //clientHandler.Credentials = cc;
+            //if (cert != null) clientHandler.ClientCertificates.Add(cert);
+
+            var client = new WebClient() { BaseAddress = baseUri.ToString() };
+            return client;
+        }
     }
 }
