@@ -74,6 +74,10 @@ namespace ServicePlaningWebUI.Models
                 PeriodReduction = GetValueBool(dr["period_reduction"].ToString());
                 HandlingDevices = GetValueIntOrNull(dr["handling_devices"].ToString());
                 ClientSdNumRequired = GetValueBoolOrNull(dr["client_sd_num_required"].ToString());
+                Sla1 = GetValueIntOrNull(dr["sla_1_hours"].ToString());
+                Sla2 = GetValueIntOrNull(dr["sla_2_hours"].ToString());
+                Sla3 = GetValueIntOrNull(dr["sla_3_hours"].ToString());
+                Sla4 = GetValueIntOrNull(dr["sla_4_hours"].ToString());
             }
         }
 

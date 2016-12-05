@@ -297,6 +297,10 @@ namespace ServicePlaningWebUI.WebForms.Contracts
             MainHelper.TxtSetText(ref txtNote, contract.Note);
             MainHelper.TxtSetText(ref txtHandlingDevices, contract.HandlingDevices);
             MainHelper.RblSetValue(ref rblClientSdNumRequired, contract.ClientSdNumRequired);
+            MainHelper.TxtSetText(ref txtSla1, contract.Sla1);
+            MainHelper.TxtSetText(ref txtSla2, contract.Sla2);
+            MainHelper.TxtSetText(ref txtSla3, contract.Sla3);
+            MainHelper.TxtSetText(ref txtSla4, contract.Sla4);
 
             btnProlong.Visible = IsProlong;
             btnCopy.Visible = !IsProlong;
