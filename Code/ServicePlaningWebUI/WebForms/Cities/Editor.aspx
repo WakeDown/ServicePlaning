@@ -6,41 +6,35 @@
     <%=FormTitle %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphFormBody" runat="server">
-    <div id="formDevices" class="form-horizontal val-form" role="form">
+    <blockquote class="alert alert-info">
+        07.12.2016 загружен большой список населенных пунктов без SLA (порядка 185000).<br/>
+        Для добавления/изменения (в том числе SLA) населенного пункта необходимо обратиться в helpdesk.<br />
+        <a href="https://helpdesk.unitgroup.ru/Claim/New" target="_blank">https://helpdesk.unitgroup.ru/Claim/New</a>
+    </blockquote>
+   <%-- <div id="formDevices" class="form-horizontal val-form" role="form">
         <div class="form-group">
             <label for='<%=txtRegion.ClientID %>' class="col-sm-2 control-label">Регион</label>
             <div class="col-sm-10 val-control-container">
                 <asp:TextBox ID="txtRegion" runat="server" class="form-control" MaxLength="150"></asp:TextBox>
-                <%--<span class="help-block">
-                    <asp:RequiredFieldValidator ID="rfvTxtModel" runat="server" ErrorMessage="Заполните поле &laquo;Название города&raquo;" ControlToValidate="txtName" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
-                </span>--%>
+                
             </div>
         </div>
         <div class="form-group">
             <label for='<%=txtArea.ClientID %>' class="col-sm-2 control-label">Район</label>
             <div class="col-sm-10 val-control-container">
                 <asp:TextBox ID="txtArea" runat="server" class="form-control" MaxLength="150"></asp:TextBox>
-                <%--<span class="help-block">
-                    <asp:RequiredFieldValidator ID="rfvTxtModel" runat="server" ErrorMessage="Заполните поле &laquo;Название города&raquo;" ControlToValidate="txtName" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
-                </span>--%>
             </div>
         </div>
         <div class="form-group">
             <label for='<%=txtName.ClientID %>' class="col-sm-2 control-label">Город</label>
             <div class="col-sm-10 val-control-container">
                 <asp:TextBox ID="txtName" runat="server" class="form-control" MaxLength="50"></asp:TextBox>
-                <%--<span class="help-block">
-                    <asp:RequiredFieldValidator ID="rfvTxtModel" runat="server" ErrorMessage="Заполните поле &laquo;Название города&raquo;" ControlToValidate="txtName" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
-                </span>--%>
             </div>
         </div>
         <div class="form-group">
             <label for='<%=txtLocality.ClientID %>' class="col-sm-2 control-label">Населенный пункт</label>
             <div class="col-sm-10 val-control-container">
                 <asp:TextBox ID="txtLocality" runat="server" class="form-control" MaxLength="100"></asp:TextBox>
-                <%--<span class="help-block">
-                    <asp:RequiredFieldValidator ID="rfvTxtModel" runat="server" ErrorMessage="Заполните поле &laquo;Название города&raquo;" ControlToValidate="txtName" Display="Dynamic" CssClass="text-danger" SetFocusOnError="True" ValidationGroup="vgForm"></asp:RequiredFieldValidator>
-                </span>--%>
             </div>
         </div>
         <div class="form-group">
@@ -106,18 +100,16 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <asp:LinkButton ID="btnSaveAndAddNew" runat="server" type="submit" class="btn btn-primary btn-lg" data-toggle="tooltip" title="сохранить и очистить" OnClick="btnSaveAndAddNew_Click" ValidationGroup="vgForm"><i class="fa fa-save fa-lg"></i></asp:LinkButton>
-<%--                <asp:LinkButton ID="btnSaveAndBack" runat="server" type="submit" class="btn btn-primary btn-lg" data-toggle="tooltip" title="сохранить и перейти к списку оборудования" OnClick="btnSaveAndBack_Click" ValidationGroup="vgForm"><i class="fa fa-save fa-lg"></i>&nbsp;<i class="fa fa-mail-reply fa-sm"></i></asp:LinkButton>--%>
                 <a type="button" class="btn btn-default btn-lg" data-toggle="tooltip" title="к списку договоров" href='<%= FriendlyUrl.Href(ListUrl) %>'><i class="fa fa-mail-reply "></i></a>
             </div>
         </div>
-    </div>
-    <script>
+    </div>--%>
+    <%--<script>
         $(function () {
             
-<%--            $('#<%=txtCoord.ClientID%>').mask('1', { 'translation': { 1: { pattern: /-?\d{1,3}[.]\d{6},\d{1,3}[.]\d{6}/ } } });--%>
         $('#<%=txtOffset.ClientID%>').mask('100:00', { 'translation': { 1: { pattern: /[+-]/ } } });
     })
-</script>
+</script>--%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphFilterBody" runat="server">
     <div class="form-horizontal val-form" role="form">

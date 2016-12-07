@@ -76,91 +76,91 @@ namespace ServicePlaningWebUI.WebForms.Cities
 
         protected void btnSaveAndAddNew_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Save();
-                RedirectWithParams();
-            }
-            catch (Exception ex)
-            {
-                ServerMessageDisplay(new [] { phServerMessage }, ex.Message, true);
-            }
+            //try
+            //{
+            //    Save();
+            //    RedirectWithParams();
+            //}
+            //catch (Exception ex)
+            //{
+            //    ServerMessageDisplay(new [] { phServerMessage }, ex.Message, true);
+            //}
         }
 
         private void Save()
         {
-            City city = GetFormData();
-            city.Save();
-            string messageText = String.Format("Сохранение города {0} прошло успешно", city.Name);
-            ServerMessageDisplay(new [] { phServerMessage }, messageText);
+            //City city = GetFormData();
+            //city.Save();
+            //string messageText = String.Format("Сохранение города {0} прошло успешно", city.Name);
+            //ServerMessageDisplay(new [] { phServerMessage }, messageText);
         }
 
         protected void btnSaveAndBack_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Save();
-                RedirectWithParams(String.Empty, false, ListUrl);
-            }
-            catch (Exception ex)
-            {
-                ServerMessageDisplay(new [] { phServerMessage }, ex.Message, true);
-            }
+            //try
+            //{
+            //    Save();
+            //    RedirectWithParams(String.Empty, false, ListUrl);
+            //}
+            //catch (Exception ex)
+            //{
+            //    ServerMessageDisplay(new [] { phServerMessage }, ex.Message, true);
+            //}
         }
 
         private void FormClear()
         {
-            MainHelper.TxtSetEmptyText(ref txtName);
+            //MainHelper.TxtSetEmptyText(ref txtName);
         }
 
         private City GetFormData()
         {
             City city = new City();
 
-            city.Id = Id;
-            city.Region = MainHelper.TxtGetText(ref txtRegion);
-            city.Area = MainHelper.TxtGetText(ref txtArea);
-            city.Name = MainHelper.TxtGetText(ref txtName);
-            city.Locality = MainHelper.TxtGetText(ref txtLocality);
-            city.Coord = MainHelper.TxtGetText(ref txtCoord);
-            city.Sla1 = MainHelper.TxtGetTextInt32(ref txtSla_1, true);
-            city.Sla2 = MainHelper.TxtGetTextInt32(ref txtSla_2, true);
-            city.Sla3 = MainHelper.TxtGetTextInt32(ref txtSla_3, true);
-            city.Sla4 = MainHelper.TxtGetTextInt32(ref txtSla_4, true);
-            city.Offset = MainHelper.TxtGetText(ref txtOffset);
+            //city.Id = Id;
+            //city.Region = MainHelper.TxtGetText(ref txtRegion);
+            //city.Area = MainHelper.TxtGetText(ref txtArea);
+            //city.Name = MainHelper.TxtGetText(ref txtName);
+            //city.Locality = MainHelper.TxtGetText(ref txtLocality);
+            //city.Coord = MainHelper.TxtGetText(ref txtCoord);
+            //city.Sla1 = MainHelper.TxtGetTextInt32(ref txtSla_1, true);
+            //city.Sla2 = MainHelper.TxtGetTextInt32(ref txtSla_2, true);
+            //city.Sla3 = MainHelper.TxtGetTextInt32(ref txtSla_3, true);
+            //city.Sla4 = MainHelper.TxtGetTextInt32(ref txtSla_4, true);
+            //city.Offset = MainHelper.TxtGetText(ref txtOffset);
 
             return city;
         }
 
         private void FillFormData(City city)
         {
-            FormTitle = Id == 0 ? "Добавление города" : String.Format("Редактирование города {0}", city.Name);
-            MainHelper.TxtSetText(ref txtRegion, city.Region);
-            MainHelper.TxtSetText(ref txtArea, city.Area);
-            MainHelper.TxtSetText(ref txtName, city.Name);
-            MainHelper.TxtSetText(ref txtLocality, city.Locality);
-            MainHelper.TxtSetText(ref txtCoord, city.Coord);
-            MainHelper.TxtSetText(ref txtSla_1, city.Sla1);
-            MainHelper.TxtSetText(ref txtSla_2, city.Sla2);
-            MainHelper.TxtSetText(ref txtSla_3, city.Sla3);
-            MainHelper.TxtSetText(ref txtSla_4, city.Sla4);
-            MainHelper.TxtSetText(ref txtOffset, city.Offset);
+            //FormTitle = Id == 0 ? "Добавление города" : String.Format("Редактирование города {0}", city.Name);
+            //MainHelper.TxtSetText(ref txtRegion, city.Region);
+            //MainHelper.TxtSetText(ref txtArea, city.Area);
+            //MainHelper.TxtSetText(ref txtName, city.Name);
+            //MainHelper.TxtSetText(ref txtLocality, city.Locality);
+            //MainHelper.TxtSetText(ref txtCoord, city.Coord);
+            //MainHelper.TxtSetText(ref txtSla_1, city.Sla1);
+            //MainHelper.TxtSetText(ref txtSla_2, city.Sla2);
+            //MainHelper.TxtSetText(ref txtSla_3, city.Sla3);
+            //MainHelper.TxtSetText(ref txtSla_4, city.Sla4);
+            //MainHelper.TxtSetText(ref txtOffset, city.Offset);
         }
 
         //======
 
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
-            try
-            {
-                int id = Convert.ToInt32((sender as LinkButton).CommandArgument);
-                new City().Delete(id);
-                RedirectWithParams();
-            }
-            catch (Exception ex)
-            {
-                ServerMessageDisplay(new [] { phServerMessage }, ex.Message, true);
-            }
+            //try
+            //{
+            //    int id = Convert.ToInt32((sender as LinkButton).CommandArgument);
+            //    new City().Delete(id);
+            //    RedirectWithParams();
+            //}
+            //catch (Exception ex)
+            //{
+            //    ServerMessageDisplay(new [] { phServerMessage }, ex.Message, true);
+            //}
         }
 
         protected void btnSearch_OnClick(object sender, EventArgs e)
