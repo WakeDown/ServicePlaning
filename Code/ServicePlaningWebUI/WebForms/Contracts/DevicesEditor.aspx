@@ -218,12 +218,13 @@
                     <asp:LinkButton ID="btnSaveGraphick" runat="server" OnClick="btnSaveGraphick_Click" CssClass="btn btn-primary btn-sm" ValidationGroup="vgForm"><i class="fa fa-save fa-lg"></i>&nbsp;сохранить график обслуживания</asp:LinkButton>
                         </div>
                 </div>--%>
+            
             <div class="form-group">
                 <label class="col-sm-2 control-label required-mark" for='<%=ddlCity.ClientID %>'>Город</label>
                 <div class="col-sm-10">
                     <div class="input-group full-width">
                         <span class="input-group-btn width-20">
-                            <asp:TextBox ID="txtCityFilter" runat="server" class="form-control width-20" placeholder="поиск" MaxLength="30"></asp:TextBox>
+                            <asp:TextBox ID="txtCityFilter" runat="server" class="form-control width-20" placeholder="поиск" MaxLength="30" OnTextChanged="txtCityFilter_OnTextChanged" AutoPostBack="True"></asp:TextBox>
                         </span>
                         <asp:DropDownList ID="ddlCity" runat="server" CssClass="form-control">
                         </asp:DropDownList>

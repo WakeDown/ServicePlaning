@@ -21,12 +21,13 @@ namespace ServicePlaningWebUI.Db
             /// Города (список выбора)
             /// </summary>
             /// <returns></returns>
-            public static DataTable GetCitiesSelectionList(string filter = null, int? idContract = null)
+            public static DataTable GetCitiesSelectionList(string filter = null, int? idContract = null, int? idCity = null)
             {
                 DataTable dt = new DataTable();
                 SqlParameter pFilter = new SqlParameter() { ParameterName = "name", Value = filter, DbType = DbType.AnsiString };
+                SqlParameter pidCity = new SqlParameter() { ParameterName = "id_city", Value = idCity, DbType = DbType.Int32 };
 
-                dt = ExecuteQueryStoredProcedure(sp, "getCitiesSelectionList", pFilter);
+                dt = ExecuteQueryStoredProcedure(sp, "getCitiesSelectionList", pFilter, pidCity);
                 return dt;
             }
 

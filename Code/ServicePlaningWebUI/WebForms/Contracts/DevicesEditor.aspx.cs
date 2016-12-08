@@ -197,7 +197,7 @@ namespace ServicePlaningWebUI.WebForms.Contracts
             }
 
             MainHelper.DdlFill(ref ddlServiceIntervals, Db.Db.Srvpl.GetServiceIntervalSelectionList(), true);
-            MainHelper.DdlFill(ref ddlCity, Db.Db.Unit.GetCitiesSelectionList(), true);
+            //MainHelper.DdlFill(ref ddlCity, Db.Db.Unit.GetCitiesSelectionList(), true);
             MainHelper.DdlFill(ref ddlAddress, Db.Db.Srvpl.GetAddressesSelectionList(), true);
 
             MainHelper.DdlFill(ref ddlServiceAdmin, Db.Db.Users.GetUsersSelectionList(serviceAdminRightGroup), true);
@@ -483,6 +483,10 @@ namespace ServicePlaningWebUI.WebForms.Contracts
             if (contract2Devices != null)
             {
                 MainHelper.DdlSetSelectedValue(ref ddlServiceAdmin, contract2Devices.IdServiceAdmin);
+
+                if (contract2Devices.IdCity > 0)
+                    MainHelper.DdlFill(ref ddlCity, Db.Db.Unit.GetCitiesSelectionList(idCity: contract2Devices.IdCity), true);
+
                 MainHelper.DdlSetSelectedValue(ref ddlCity, contract2Devices.IdCity);
                 MainHelper.DdlSetSelectedValue(ref ddlServiceIntervals, contract2Devices.IdServiceInterval);
                 //MainHelper.TxtSetText(ref txtAddress, contract2Devices.Address);
@@ -661,7 +665,7 @@ namespace ServicePlaningWebUI.WebForms.Contracts
             //</Отметки графика обслуживания>
 
             //<Фильтрация списка по вводимому тексту>
-            script = String.Format(@"$(function() {{$('#{0}').filterByText($('#{1}'), true);}});", ddlCity.ClientID, txtCityFilter.ClientID);
+            //script = String.Format(@"$(function() {{$('#{0}').filterByText($('#{1}'), true);}});", ddlCity.ClientID, txtCityFilter.ClientID);
 
             ScriptManager.RegisterStartupScript(this, GetType(), "filterCity", script, true);
 
@@ -755,6 +759,13 @@ namespace ServicePlaningWebUI.WebForms.Contracts
 
             bool needsGraphickList = Db.Db.Srvpl.CheckServiceIntervalNeedsGraphickList(idServiceInterval);
             pnlGriphick.Visible = needsGraphickList;
+        }
+
+        protected void txtCityFilter_OnTextChanged(object sender, EventArgs e)
+        {
+            string filter = txtCityFilter.Text;
+            MainHelper.DdlFill(ref ddlCity, Db.Db.Unit.GetCitiesSelectionList(filter), true);
+            
         }
     }
 }

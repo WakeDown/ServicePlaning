@@ -154,7 +154,7 @@ namespace ServicePlaningWebUI.WebForms.Contracts
             MainHelper.DdlFill(ref ddlFilterContractNumber, Db.Db.Srvpl.GetContractSelectionList(), true, MainHelper.ListFirstItemType.SelectAll);
             MainHelper.DdlFill(ref ddlFilterModel, Db.Db.Srvpl.GetDeviceModelSelectionList(), true, MainHelper.ListFirstItemType.SelectAll);
             MainHelper.DdlFill(ref ddlFilterServiceIntervals, Db.Db.Srvpl.GetServiceIntervalSelectionList(), true, MainHelper.ListFirstItemType.SelectAll);
-            MainHelper.DdlFill(ref ddlFilterCity, Db.Db.Unit.GetCitiesSelectionList(), true, MainHelper.ListFirstItemType.SelectAll);
+            //MainHelper.DdlFill(ref ddlFilterCity, Db.Db.Unit.GetCitiesSelectionList(), true, MainHelper.ListFirstItemType.SelectAll);
             var saList = Db.Db.Users.GetUsersSelectionList(serviceAdminRightGroup);
             MainHelper.DdlFill(ref ddlFilterServiceAdmin, saList, true, MainHelper.ListFirstItemType.SelectAll);
             MainHelper.DdlFill(ref ddlNewServiceAdmin, saList, true, MainHelper.ListFirstItemType.Nullable); 
